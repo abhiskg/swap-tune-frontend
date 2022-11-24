@@ -9,7 +9,7 @@ const Dashboard = () => {
 
       <div className="flex">
         <SideNavbar />
-        <div className="flex 1">
+        <div className="flex-1">
           <Outlet />
         </div>
       </div>

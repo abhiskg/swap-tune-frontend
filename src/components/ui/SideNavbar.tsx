@@ -1,12 +1,28 @@
-import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 const SideNavbar = () => {
+  const [menu, setMenu] = useState(false);
+  const authContext = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    authContext?.logOut().then(() => {
+      toast.success("Successfully Logout");
+    });
+  };
   return (
-    <div className="flex flex-col left-0 h-screen p-3 w-60 bg-gray-50 text-gray-800">
+    <div
+      className={`${
+        menu ? "-translate-x-10" : ""
+      }flex flex-col left-0 h-screen p-3 w-60 bg-gray-50 text-gray-800`}
+    >
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <h2>Dashboard</h2>
-          <button className="p-2">
+          <button className="p-2" onClick={() => setMenu(!menu)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -63,11 +79,11 @@ const SideNavbar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 text-gray-600"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <circle cx="6" cy="19" r="2" />
@@ -190,12 +206,11 @@ const SideNavbar = () => {
                 <span>Reported Items</span>
               </NavLink>
             </li>
-            <li className="rounded-sm fixed bottom-0">
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="flex items-center p-2 space-x-3 rounded-md"
-              >
+            <li
+              onClick={handleSignOut}
+              className="rounded-sm fixed bottom-0 cursor-pointer"
+            >
+              <div className="flex items-center p-2 space-x-3 rounded-md ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
@@ -205,7 +220,7 @@ const SideNavbar = () => {
                   <rect width="32" height="64" x="256" y="232"></rect>
                 </svg>
                 <span>Logout</span>
-              </a>
+              </div>
             </li>
           </ul>
         </div>

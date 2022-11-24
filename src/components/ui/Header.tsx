@@ -30,16 +30,6 @@ const Header = () => {
               Home
             </NavLink>
           </li>
-          <li className="hover:text-blue-900">
-            <NavLink
-              to="/appointment"
-              className={({ isActive }) =>
-                isActive ? " text-blue-900 dark:text-violet-400" : ""
-              }
-            >
-              Appointments
-            </NavLink>
-          </li>
 
           {!authContext?.user?.uid ? (
             <>
@@ -51,16 +41,6 @@ const Header = () => {
                   }
                 >
                   Dashboard
-                </NavLink>
-              </li>
-              <li className="hover:text-blue-900">
-                <NavLink
-                  to="/my-reviews"
-                  className={({ isActive }) =>
-                    isActive ? " text-blue-900 dark:text-violet-400" : ""
-                  }
-                >
-                  My Reviews
                 </NavLink>
               </li>
 
