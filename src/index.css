@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .modal-input {
+    @apply border block rounded w-full;
+  }
+  .error-message {
+    @apply text-xs font-medium text-red-500;
+  }
+  .input-form {
+    @apply w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:outline-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100;
+  }
+  .auth-button {
+    @apply w-full rounded-md bg-blue-500 px-8 py-3 font-semibold transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-blue-600 active:scale-95  disabled:cursor-not-allowed disabled:bg-red-400 dark:text-gray-900;
+  }
+  .footer-link-text {
+    @apply font-medium uppercase tracking-wide hover:text-violet-600 dark:text-gray-50;
+  }
+  .auth-login {
+    @apply flex w-full items-center justify-center space-x-4 rounded-md border p-4 outline-2 hover:bg-gray-100 hover:outline hover:outline-violet-400 dark:border-gray-400 dark:hover:bg-gray-800;
+  }
+  .header-style {
+    @apply mb-12 mt-4 text-center text-3xl font-medium  sm:text-4xl;
+  }
+}
+.custom-width {
+  width: min(1360px, 94%);
+}
