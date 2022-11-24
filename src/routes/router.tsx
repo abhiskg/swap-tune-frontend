@@ -3,6 +3,7 @@ import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import AddCategory from "../pages/dashboard/admin/AddCategory";
 import AllBuyers from "../pages/dashboard/admin/AllBuyers";
 import AllSellers from "../pages/dashboard/admin/AllSellers";
 import ReportedItems from "../pages/dashboard/admin/ReportedItems";
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/admin/all-sellers",
         element: <AllSellers />,
+      },
+      {
+        path: "/dashboard/admin/add-category",
+        element: <AddCategory />,
       },
       {
         path: "/dashboard/admin/reported-items",

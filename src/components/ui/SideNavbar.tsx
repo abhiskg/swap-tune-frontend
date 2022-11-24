@@ -178,6 +178,38 @@ const SideNavbar = () => {
                 <span>All Buyers</span>
               </NavLink>
             </li>
+            <li className="rounded-sm  text-gray-900">
+              <NavLink
+                rel="noopener noreferrer"
+                to="/dashboard/admin/add-category"
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex items-center p-2 space-x-3 rounded-md bg-gray-300"
+                    : "flex items-center p-2 space-x-3 rounded-md"
+                }
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 text-gray-600"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+                  <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+                  <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+                  <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+                  <line x1="9" y1="12" x2="15" y2="12" />
+                  <line x1="12" y1="9" x2="12" y2="15" />
+                </svg>
+                <span>Add Category</span>
+              </NavLink>
+            </li>
+
             <li className="rounded-sm">
               <NavLink
                 rel="noopener noreferrer"
