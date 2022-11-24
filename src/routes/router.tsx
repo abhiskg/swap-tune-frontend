@@ -38,11 +38,15 @@ const router = createBrowserRouter([
         element: <MyOrders />,
       },
       {
-        path: "/dashboard/add-product",
+        path: "/dashboard/my-orders",
+        element: <MyOrders />,
+      },
+      {
+        path: "/dashboard/seller/add-product",
         element: <AddProduct />,
       },
       {
-        path: "/dashboard/my-products",
+        path: "/dashboard/seller/my-products",
         element: <MyProducts />,
       },
       {
@@ -54,7 +58,7 @@ const router = createBrowserRouter([
         element: <AllSellers />,
       },
       {
-        path: "/dashboard/admin/all-sellers",
+        path: "/dashboard/admin/reported-items",
         element: <ReportedItems />,
       },
     ],
