@@ -1,10 +1,13 @@
-import { useUsersData } from "../../../hooks/useUsersData";
+import { useMakeAdminUser, useUsersData } from "../../../hooks/useUsersData";
 import DeleteModal from "../../../modals/DeleteModal";
 
 const AllBuyers = () => {
   const { data: buyers, isLoading } = useUsersData("ab@gmail.com", "buyer");
+  const { mutate } = useMakeAdminUser("ab@gmail.com", "buyer");
 
-  const handleAdmin = (id: string) => {};
+  const handleAdmin = (id: string) => {
+    mutate(id);
+  };
 
   return (
     <div>

@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useDeleteUser } from "../hooks/useUsersData";
 
 export default function DeleteModal({ id }: { id: string }) {
   const [showModal, setShowModal] = useState(false);
 
-  // const { mutate } = useDeleteUserData();
+  const { mutate } = useDeleteUser("ab@gmail.com", "buyer");
 
   const handleDelete = () => {
-    // mutate(id);
+    mutate(id);
     setShowModal(false);
   };
 
