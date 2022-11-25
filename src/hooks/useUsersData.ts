@@ -17,25 +17,25 @@ const makeAdminUser = (id: string) => {
   return request({ url: `/api/user/${id}`, method: "patch" });
 };
 
-export const useUsersData = (email: string, role: string) => {
-  return useQuery(["all-users", email, role], () => fetchUsersData(role));
+export const useUsersData = (role: string) => {
+  return useQuery(["all-users", role], () => fetchUsersData(role));
 };
 
-export const useDeleteUser = (email: string, role: string) => {
+export const useDeleteUser = (role: string) => {
   const queryClient = useQueryClient();
   return useMutation(deleteUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["all-users", email, role]);
+      queryClient.invalidateQueries(["all-users", role]);
       toast.success("User Deleted Successfully");
     },
   });
 };
 
-export const useMakeAdminUser = (email: string, role: string) => {
+export const useMakeAdminUser = (role: string) => {
   const queryClient = useQueryClient();
   return useMutation(makeAdminUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["all-users", email, role]);
+      queryClient.invalidateQueries(["all-users", role]);
       toast.success("User Deleted Successfully");
     },
   });

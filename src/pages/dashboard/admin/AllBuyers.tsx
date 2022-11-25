@@ -1,13 +1,18 @@
+import PingLoader from "../../../components/loaders/PingLoader";
 import { useMakeAdminUser, useUsersData } from "../../../hooks/useUsersData";
 import DeleteModal from "../../../modals/DeleteModal";
 
 const AllBuyers = () => {
-  const { data: buyers, isLoading } = useUsersData("ab@gmail.com", "buyer");
-  const { mutate } = useMakeAdminUser("ab@gmail.com", "buyer");
+  const { data: buyers, isLoading } = useUsersData("buyer");
+  const { mutate } = useMakeAdminUser("buyer");
 
   const handleAdmin = (id: string) => {
     mutate(id);
   };
+
+  if (isLoading) {
+    return <PingLoader />;
+  }
 
   return (
     <div>
