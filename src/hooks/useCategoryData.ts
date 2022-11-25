@@ -1,10 +1,10 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { CategoryDataType, CategoryInputType } from "../types/CategoryTypes";
 import { request } from "../utils/axios.utils";
 
 const addCategory = (data: CategoryInputType) => {
-  return request({ url: `/api/category`, method: "post", data });
+  return request({ url: `/api/category`, method: "post", data: data });
 };
 
 const fetchAllCategories: () => Promise<
@@ -18,9 +18,11 @@ export const useCategoryData = () => {
 };
 
 export const useAddCategory = () => {
+  const queryClient = useQueryClient();
   return useMutation(addCategory, {
     onSuccess: () => {
       toast.success("New Category Added");
+      queryClient.invalidateQueries(["all-categories"]);
     },
   });
 };

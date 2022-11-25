@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCategoryData } from "../../../hooks/useCategoryData";
+import PingLoader from "../../../components/loaders/PingLoader";
 
 const ProductSchema = z.object({
   productName: z.string().min(1, { message: "Please enter product name" }),
@@ -42,6 +43,18 @@ const AddProduct = () => {
   const handleAddProduct: SubmitHandler<ProductSchemaType> = (data) => {
     console.log(data);
   };
+
+  if (isLoading) {
+    return <PingLoader />;
+  }
+
+  if (categories && categories?.length < 1) {
+    return (
+      <div className="grid place-items-center text-xl font-medium mt-20">
+        Can't add product, No category found
+      </div>
+    );
+  }
 
   return (
     <div className="grid place-items-center">

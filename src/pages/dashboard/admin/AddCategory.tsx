@@ -27,6 +27,7 @@ const AddCategory = () => {
 
   const handleAddCategory: SubmitHandler<CategorySchemaType> = (data) => {
     mutate(data);
+    reset();
   };
   return (
     <div className=" grid place-items-center ">
