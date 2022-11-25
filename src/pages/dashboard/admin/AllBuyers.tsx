@@ -26,9 +26,9 @@ const AllBuyers = () => {
           </colgroup>
           <thead className=" bg-gray-300">
             <tr className="text-left">
-              <th className="p-3">User Name</th>
+              <th className="p-3">Buyer Name</th>
               <th className="p-3">Email</th>
-              <th className="p-3 text-right">Edit</th>
+              <th className="p-3 text-right">Change Role</th>
               <th className="p-3 text-right">Delete</th>
             </tr>
           </thead>
@@ -51,7 +51,7 @@ const AllBuyers = () => {
                     )}
                   </td>
                   <td className="p-3 text-right">
-                    <DeleteModal id={buyer._id} />
+                    <DeleteModal id={buyer._id} role={buyer.role} />
                   </td>
                 </tr>
               ))}

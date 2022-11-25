@@ -1,14 +1,9 @@
 import PingLoader from "../../../components/loaders/PingLoader";
-import { useMakeAdminUser, useUsersData } from "../../../hooks/useUsersData";
+import { useUsersData } from "../../../hooks/useUsersData";
 import DeleteModal from "../../../modals/DeleteModal";
 
-const AllSellers = () => {
-  const { data: sellers, isLoading } = useUsersData("seller");
-  const { mutate } = useMakeAdminUser("seller");
-
-  const handleAdmin = (id: string) => {
-    mutate(id);
-  };
+const AllAdmins = () => {
+  const { data: admins, isLoading } = useUsersData("admin");
 
   if (isLoading) {
     return <PingLoader />;
@@ -21,37 +16,32 @@ const AllSellers = () => {
           <colgroup>
             <col className="w-60" />
             <col />
-            <col className="w-24" />
+
             <col className="w-24" />
           </colgroup>
           <thead className=" bg-gray-300">
             <tr className="text-left">
-              <th className="p-3">Seller Name</th>
+              <th className="p-3">Admin Name</th>
               <th className="p-3">Email</th>
-              <th className="p-3 text-right">Change Role</th>
+
               <th className="p-3 text-right">Delete</th>
             </tr>
           </thead>
           <tbody>
-            {sellers &&
-              sellers.map((seller) => (
+            {admins &&
+              admins.map((admin) => (
                 <tr
-                  key={seller._id}
+                  key={admin._id}
                   className="border-b border-gray-300 border-opacity-20 bg-gray-50"
                 >
                   <td className="p-3">
-                    <p>{seller.name}</p>
+                    <p>{admin.name}</p>
                   </td>
                   <td className="p-3">
-                    <p>{seller.email}</p>
-                  </td>
-                  <td className="p-3 text-center">
-                    {seller.role !== "admin" && (
-                      <p onClick={() => handleAdmin(seller._id)}>Make Admin</p>
-                    )}
+                    <p>{admin.email}</p>
                   </td>
                   <td className="p-3 text-right">
-                    <DeleteModal id={seller._id} role={seller.role} />
+                    <DeleteModal id={admin._id} role={admin.role} />
                   </td>
                 </tr>
               ))}
@@ -62,4 +52,4 @@ const AllSellers = () => {
   );
 };
 
-export default AllSellers;
+export default AllAdmins;

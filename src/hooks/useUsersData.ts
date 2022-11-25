@@ -36,7 +36,8 @@ export const useMakeAdminUser = (role: string) => {
   return useMutation(makeAdminUser, {
     onSuccess: () => {
       queryClient.invalidateQueries(["all-users", role]);
-      toast.success("User Deleted Successfully");
+      queryClient.invalidateQueries(["all-users", "admin"]);
+      toast.success("New admin added, check all admin section");
     },
   });
 };
