@@ -31,7 +31,7 @@ const Header = () => {
             </NavLink>
           </li>
 
-          {!authContext?.user?.uid ? (
+          {authContext?.user?.uid ? (
             <>
               <li className="hover:text-blue-900">
                 <NavLink
