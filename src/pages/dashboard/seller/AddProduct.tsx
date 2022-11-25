@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCategoryData } from "../../../hooks/useCategoryData";
 
 const ProductSchema = z.object({
   productName: z.string().min(1, { message: "Please enter product name" }),
@@ -27,6 +28,8 @@ const ProductSchema = z.object({
 type ProductSchemaType = z.infer<typeof ProductSchema>;
 
 const AddProduct = () => {
+  const { data: categories, isLoading } = useCategoryData();
+
   const {
     register,
     handleSubmit,
@@ -73,9 +76,12 @@ const AddProduct = () => {
         <div className="space-y-1">
           <label htmlFor="categoryId">Product Category</label>
           <select className="input-form" {...register("categoryId")}>
-            <option value="">5</option>
-            <option value="">5</option>
-            <option value="">5</option>
+            {categories &&
+              categories?.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.categoryName}
+                </option>
+              ))}
           </select>
           {errors.categoryId?.message && (
             <p className="error-message">{errors.categoryId?.message}</p>
