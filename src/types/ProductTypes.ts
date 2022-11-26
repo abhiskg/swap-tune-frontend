@@ -7,7 +7,7 @@ export interface ProductInputTypes {
   yearOfUse: number;
   location: string;
   description: string;
-  categoryId: string;
+  category: string;
   sellerName: string;
   sellerEmail: string;
 }

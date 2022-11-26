@@ -27,7 +27,7 @@ const ProductSchema = z.object({
   description: z
     .string()
     .min(1, { message: "Please enter product description" }),
-  categoryId: z.string().min(1, { message: "Please select product category" }),
+  category: z.string().min(1, { message: "Please select product category" }),
 });
 
 type ProductSchemaType = z.infer<typeof ProductSchema>;
@@ -101,16 +101,16 @@ const AddProduct = () => {
         </div>
         <div className="space-y-1">
           <label htmlFor="categoryId">Product Category</label>
-          <select className="input-form" {...register("categoryId")}>
+          <select className="input-form" {...register("category")}>
             {categories &&
               categories?.map((category) => (
-                <option key={category._id} value={category._id}>
+                <option key={category._id} value={category.categoryName}>
                   {category.categoryName}
                 </option>
               ))}
           </select>
-          {errors.categoryId?.message && (
-            <p className="error-message">{errors.categoryId?.message}</p>
+          {errors.category?.message && (
+            <p className="error-message">{errors.category?.message}</p>
           )}
         </div>
         <div className="space-y-1">

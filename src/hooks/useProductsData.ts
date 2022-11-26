@@ -6,7 +6,11 @@ import { request } from "../utils/axios.utils";
 const fetchMyProducts: (email: string) => Promise<ProductDataTypes[]> = (
   email: string
 ) => {
-  return request({ url: `/api/product?email=${email}` });
+  return request({ url: `/api/product/${email}` });
+};
+
+const fetchAdvertisedProduct: () => Promise<ProductDataTypes[]> = () => {
+  return request({ url: `/api/product?status=available&isAdvertised=true` });
 };
 
 const createNewProduct = (products: ProductInputTypes) => {
@@ -25,6 +29,10 @@ export const useMyProductsData = (email: string) => {
   return useQuery(["my-products"], () => fetchMyProducts(email));
 };
 
+export const useAdvertiseProducts = () => {
+  return useQuery(["product-advertised"], fetchAdvertisedProduct);
+};
+
 export const useCreateProduct = () => {
   const queryClient = useQueryClient();
   return useMutation(createNewProduct, {
@@ -40,6 +48,7 @@ export const useToggleAdvertiseMode = () => {
   return useMutation(toggleAdvertiseMode, {
     onSuccess: () => {
       queryClient.invalidateQueries(["my-products"]);
+      queryClient.invalidateQueries(["product-advertised"]);
       toast.success("Advertise mode updated");
     },
   });

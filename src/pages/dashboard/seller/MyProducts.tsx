@@ -32,9 +32,7 @@ const MyProducts = () => {
           <thead className=" bg-gray-300">
             <tr>
               <th className="p-3 text-left">Product</th>
-              <th className="p-3 text-center lg:table-cell hidden">
-                Resale Price
-              </th>
+              <th className="p-3 text-center lg:table-cell hidden">Category</th>
               <th className="p-3 text-center">Status</th>
               <th className="p-3 text-center">Advertise Mode</th>
               <th className="p-3 text-right">Delete</th>
@@ -51,7 +49,7 @@ const MyProducts = () => {
                     <p>{product.productName}</p>
                   </td>
                   <td className="p-3 text-center lg:table-cell hidden">
-                    <p>{product.resalePrice} $</p>
+                    <p>{product.category}</p>
                   </td>
                   <td className="p-3 text-center">
                     <p
