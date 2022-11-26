@@ -1,5 +1,4 @@
-export interface ProductDataTypes {
-  _id: string;
+export interface ProductInputTypes {
   productName: string;
   image: string;
   originalPrice: number;
@@ -9,7 +8,12 @@ export interface ProductDataTypes {
   location: string;
   description: string;
   categoryId: string;
-  status: string;
   sellerName: string;
+  sellerEmail: string;
+}
+
+export interface ProductDataTypes extends ProductInputTypes {
+  _id: string;
   isSellerVerified: boolean;
+  status: string;
 }

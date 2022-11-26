@@ -3,6 +3,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCategoryData } from "../../../hooks/useCategoryData";
 import PingLoader from "../../../components/loaders/PingLoader";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
+import { useCreateProduct } from "../../../hooks/useProductsData";
+import toast from "react-hot-toast";
 
 const ProductSchema = z.object({
   productName: z.string().min(1, { message: "Please enter product name" }),
@@ -29,7 +33,9 @@ const ProductSchema = z.object({
 type ProductSchemaType = z.infer<typeof ProductSchema>;
 
 const AddProduct = () => {
+  const authContext = useContext(AuthContext);
   const { data: categories, isLoading } = useCategoryData();
+  const { mutate } = useCreateProduct();
 
   const {
     register,
@@ -41,7 +47,13 @@ const AddProduct = () => {
   });
 
   const handleAddProduct: SubmitHandler<ProductSchemaType> = (data) => {
-    console.log(data);
+    const sellerName = authContext?.user?.displayName as string;
+    const sellerEmail = authContext?.user?.email as string;
+    if (!sellerEmail && !sellerName) {
+      return toast.error("Seller not found");
+    }
+    const products = { ...data, sellerName, sellerEmail };
+    mutate(products);
   };
 
   if (isLoading) {
@@ -142,7 +154,7 @@ const AddProduct = () => {
           <label htmlFor="yearOfUse">Year of used</label>
           <input
             className="input-form"
-            type="text"
+            type="number"
             {...register("yearOfUse", { valueAsNumber: true })}
             id="yearOfUse"
             placeholder=""
@@ -166,9 +178,9 @@ const AddProduct = () => {
         </div>
         <div className="space-y-1">
           <label htmlFor="description">Product Description</label>
-          <input
+          <textarea
             className="input-form"
-            type="text"
+            {...register("description")}
             id="description"
             placeholder=""
           />

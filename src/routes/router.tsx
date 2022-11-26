@@ -116,7 +116,7 @@ const router = createBrowserRouter([
         path: "/dashboard/admin/reported-items",
         element: (
           <AdminRoute>
-            <AddCategory />
+            <ReportedItems />
           </AdminRoute>
         ),
       },
