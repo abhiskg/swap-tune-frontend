@@ -1,10 +1,15 @@
 import PingLoader from "../../../components/loaders/PingLoader";
-import { useMakeAdminUser, useUsersData } from "../../../hooks/useUsersData";
+import {
+  useDeleteUser,
+  useMakeAdminUser,
+  useUsersData,
+} from "../../../hooks/useUsersData";
 import DeleteModal from "../../../modals/DeleteModal";
 
 const AllSellers = () => {
   const { data: sellers, isLoading } = useUsersData("seller");
   const { mutate } = useMakeAdminUser("seller");
+  const { mutate: mutateDelete } = useDeleteUser("seller");
 
   const handleAdmin = (id: string) => {
     mutate(id);
@@ -51,7 +56,7 @@ const AllSellers = () => {
                     )}
                   </td>
                   <td className="p-3 text-right">
-                    <DeleteModal id={seller._id} role={seller.role} />
+                    <DeleteModal id={seller._id} mutateDelete={mutateDelete} />
                   </td>
                 </tr>
               ))}

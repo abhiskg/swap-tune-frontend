@@ -1,19 +1,17 @@
+import { UseMutateFunction } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDeleteUser } from "../hooks/useUsersData";
 
-export default function DeleteModal({
-  id,
-  role,
-}: {
+interface DeleteModalProps {
   id: string;
-  role: string;
-}) {
+  mutateDelete: UseMutateFunction<any, unknown, string, unknown>;
+}
+
+export default function DeleteModal({ id, mutateDelete }: DeleteModalProps) {
   const [showModal, setShowModal] = useState(false);
 
-  const { mutate } = useDeleteUser(role);
-
   const handleDelete = () => {
-    mutate(id);
+    mutateDelete(id);
     setShowModal(false);
   };
 
@@ -26,8 +24,8 @@ export default function DeleteModal({
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

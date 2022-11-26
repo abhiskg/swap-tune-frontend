@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import {
+  useDeleteProduct,
   useMyProductsData,
   useToggleAdvertiseMode,
 } from "../../../hooks/useProductsData";
@@ -12,6 +13,7 @@ const MyProducts = () => {
     authContext?.user?.email as string
   );
   const { mutate } = useToggleAdvertiseMode();
+  const { mutate: mutateDelete } = useDeleteProduct();
 
   const handleUpdateAdvertiseMode = (id: string) => {
     mutate(id);
@@ -21,17 +23,19 @@ const MyProducts = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full text-xs">
           <colgroup>
-            <col className="w-60" />
             <col />
+            <col className="lg:table-column hidden" />
             <col />
             <col />
             <col className="w-24" />
           </colgroup>
           <thead className=" bg-gray-300">
-            <tr className="text-left">
-              <th className="p-3">Product</th>
-              <th className="p-3">Category</th>
-              <th className="p-3">Status</th>
+            <tr>
+              <th className="p-3 text-left">Product</th>
+              <th className="p-3 text-center lg:table-cell hidden">
+                Resale Price
+              </th>
+              <th className="p-3 text-center">Status</th>
               <th className="p-3 text-center">Advertise Mode</th>
               <th className="p-3 text-right">Delete</th>
             </tr>
@@ -46,11 +50,19 @@ const MyProducts = () => {
                   <td className="p-3">
                     <p>{product.productName}</p>
                   </td>
-                  <td className="p-3">
-                    <p>{product.categoryId}</p>
+                  <td className="p-3 text-center lg:table-cell hidden">
+                    <p>{product.resalePrice} $</p>
                   </td>
-                  <td className="p-3">
-                    <p>{product.status}</p>
+                  <td className="p-3 text-center">
+                    <p
+                      className={`font-semibold uppercase ${
+                        product.status === "available"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {product.status}
+                    </p>
                   </td>
                   {product.status === "available" && (
                     <td className="p-3 text-center">
@@ -71,8 +83,8 @@ const MyProducts = () => {
                     </td>
                   )}
 
-                  <td className="p-3 text-right">
-                    {/* <DeleteModal id={product._id} role={product.role} /> */}
+                  <td className="py-3 px-2 text-right">
+                    <DeleteModal id={product._id} mutateDelete={mutateDelete} />
                   </td>
                 </tr>
               ))}

@@ -54,6 +54,7 @@ const AddProduct = () => {
     }
     const products = { ...data, sellerName, sellerEmail };
     mutate(products);
+    reset();
   };
 
   if (isLoading) {

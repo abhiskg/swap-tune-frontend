@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import PingLoader from "../../../components/loaders/PingLoader";
 import { AuthContext } from "../../../context/AuthContext";
-import { useUsersData } from "../../../hooks/useUsersData";
+import { useDeleteUser, useUsersData } from "../../../hooks/useUsersData";
 import DeleteModal from "../../../modals/DeleteModal";
 
 const AllAdmins = () => {
   const authContext = useContext(AuthContext);
   const { data: admins, isLoading } = useUsersData("admin");
+  const { mutate: mutateDelete } = useDeleteUser("admin");
 
   if (isLoading) {
     return <PingLoader />;
@@ -45,7 +46,7 @@ const AllAdmins = () => {
                   </td>
                   {authContext?.user?.email !== admin.email && (
                     <td className="p-3 text-right">
-                      <DeleteModal id={admin._id} role={admin.role} />
+                      <DeleteModal id={admin._id} mutateDelete={mutateDelete} />
                     </td>
                   )}
                 </tr>

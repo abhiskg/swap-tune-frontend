@@ -17,6 +17,10 @@ const toggleAdvertiseMode = (id: string) => {
   return request({ url: `/api/product/${id}`, method: "patch" });
 };
 
+const deleteProduct = (id: string) => {
+  return request({ url: `/api/product/${id}`, method: "delete" });
+};
+
 export const useMyProductsData = (email: string) => {
   return useQuery(["my-products"], () => fetchMyProducts(email));
 };
@@ -37,6 +41,16 @@ export const useToggleAdvertiseMode = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(["my-products"]);
       toast.success("Advertise mode updated");
+    },
+  });
+};
+
+export const useDeleteProduct = () => {
+  const queryClient = useQueryClient();
+  return useMutation(deleteProduct, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["my-products"]);
+      toast.success("Product has been removed");
     },
   });
 };
