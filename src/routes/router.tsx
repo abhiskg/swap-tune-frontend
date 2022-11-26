@@ -13,6 +13,10 @@ import AddProduct from "../pages/dashboard/seller/AddProduct";
 import MyProducts from "../pages/dashboard/seller/MyProducts";
 import Home from "../pages/home/Home";
 import Products from "../pages/product/Products";
+import PrivateRoute from "./PrivateRoute";
+import Blog from "../pages/blog/Blog";
+import AdminRoute from "./AdminRoute";
+import SellerRoute from "./SellerRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/category/:id",
@@ -42,7 +50,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",
@@ -54,31 +66,59 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/seller/add-product",
-        element: <AddProduct />,
+        element: (
+          <SellerRoute>
+            <AddProduct />
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/seller/my-products",
-        element: <MyProducts />,
+        element: (
+          <SellerRoute>
+            <MyProducts />
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/admin/all-buyers",
-        element: <AllBuyers />,
+        element: (
+          <AdminRoute>
+            <AllBuyers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/admin/all-sellers",
-        element: <AllSellers />,
+        element: (
+          <AdminRoute>
+            <AllSellers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/admin/all-admins",
-        element: <AllAdmins />,
+        element: (
+          <AdminRoute>
+            <AllAdmins />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/admin/add-category",
-        element: <AddCategory />,
+        element: (
+          <AdminRoute>
+            <AddCategory />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/admin/reported-items",
-        element: <ReportedItems />,
+        element: (
+          <AdminRoute>
+            <AddCategory />
+          </AdminRoute>
+        ),
       },
     ],
   },

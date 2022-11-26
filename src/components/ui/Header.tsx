@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, NavLink } from "react-router-dom";
@@ -6,10 +7,12 @@ import { AuthContext } from "../../context/AuthContext";
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const authContext = useContext(AuthContext);
+  const queryClient = useQueryClient();
 
   const handleSignOut = () => {
     authContext?.logOut().then(() => {
       toast.success("Successfully Logout");
+      queryClient.clear();
     });
   };
 
@@ -28,6 +31,16 @@ const Header = () => {
               }
             >
               Home
+            </NavLink>
+          </li>
+          <li className="hover:text-blue-900">
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                isActive ? " text-blue-900 dark:text-violet-400" : ""
+              }
+            >
+              Blog
             </NavLink>
           </li>
 

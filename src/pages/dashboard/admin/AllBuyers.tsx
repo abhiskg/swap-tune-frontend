@@ -3,7 +3,7 @@ import { useMakeAdminUser, useUsersData } from "../../../hooks/useUsersData";
 import DeleteModal from "../../../modals/DeleteModal";
 
 const AllBuyers = () => {
-  const { data: buyers, isLoading } = useUsersData("buyer");
+  const { data: buyers, isLoading, isError, error } = useUsersData("buyer");
   const { mutate } = useMakeAdminUser("buyer");
 
   const handleAdmin = (id: string) => {
@@ -12,6 +12,10 @@ const AllBuyers = () => {
 
   if (isLoading) {
     return <PingLoader />;
+  }
+
+  if (isError) {
+    console.log(error);
   }
 
   return (
