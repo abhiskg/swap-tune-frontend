@@ -15,5 +15,6 @@ export interface ProductInputTypes {
 export interface ProductDataTypes extends ProductInputTypes {
   _id: string;
   isSellerVerified: boolean;
+  isAdvertised: boolean;
   status: string;
 }
