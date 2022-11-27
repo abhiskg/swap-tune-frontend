@@ -1,9 +1,14 @@
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import BookingModal from "../../modals/BookingModal";
 import { ProductDataTypes } from "../../types/ProductTypes";
 
 const ProductCard = ({ product }: { product: ProductDataTypes }) => {
+  const authContext = useContext(AuthContext);
   return (
-    <div className="h-full overflow-hidden rounded-lg border-2 border-gray-200 border-opacity-60">
+    <div className="h-full overflow-hidden rounded-lg border-1 shadow border-gray-200 border-opacity-60">
       <div className="relative md:h-36 lg:h-48">
         <img
           className="w-full object-cover object-center h-full "
@@ -16,20 +21,39 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
       </div>
 
       <div className="px-6 pt-1 pb-6">
-        <p className="text-sm">Posted at {product.createdAt.slice(0, 10)}</p>
+        <p className="text-xs font-medium text-gray-600">
+          Posted on {product.createdAt.slice(0, 10)}
+        </p>
         <div className="flex items-center justify-between">
-          <h3 className="title-font mb-1 text-lg font-medium text-gray-900">
+          <h3 className=" font-medium text-gray-900 text-lg">
             {product.productName}
           </h3>
-          <div>{product.category}</div>
+          <div>{product.location}</div>
         </div>
-        <p className="text-center">Condition: {product.condition}</p>
+        <p className=" text-sm text-green-500 font-medium">
+          Condition: {product.condition}
+        </p>
+        <p className="text-xs font-medium text-gray-600">
+          Used for {product.yearOfUse}{" "}
+          {product.yearOfUse < 2 ? "year" : "years"}
+        </p>
 
-        <p className=" font-medium">Original Price: {product.originalPrice}$</p>
-        <p className=" font-medium">Resale Price: {product.resalePrice}$</p>
-        <p>Used:{product.yearOfUse} year</p>
-        <div className="flex items-center gap-1">
-          <p className="">Seller:{product.sellerName}</p>
+        <div className="flex items-center gap-1  font-medium text-gray-600">
+          Price:
+          <p className=" text-gray-600">
+            <span className="text-green-500">{product.resalePrice}</span>$
+          </p>
+          <p className=" ml-1">
+            <span className=" line-through text-red-400">
+              {product.originalPrice}
+            </span>
+            $
+          </p>
+        </div>
+        <div className="flex items-center  gap-1">
+          <p className=" font-medium text-gray-600">
+            Seller: {product.sellerName}
+          </p>
           {product.isSellerVerified && (
             <div className="bg-green-500 p-[1.5px] rounded-full">
               <svg
@@ -49,13 +73,16 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
             </div>
           )}
         </div>
-
-        <Link
-          to={`../products/${product._id}`}
-          className="bg-blue-300 block text-center py-1 rounded shadow"
-        >
-          Book Now
-        </Link>
+        {authContext?.user?.uid ? (
+          <BookingModal product={product} />
+        ) : (
+          <button
+            onClick={() => toast.error("Login first")}
+            className="bg-blue-300  w-full text-center py-1 rounded shadow mt-3"
+          >
+            Book Now
+          </button>
+        )}
       </div>
     </div>
   );

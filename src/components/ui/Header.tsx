@@ -15,7 +15,7 @@ const Header = () => {
       queryClient.clear();
     });
   };
-
+  console.log(authContext?.userType);
   return (
     <header className=" bg-primary sticky top-0 z-10 h-16  dark:bg-gray-900 dark:text-gray-100">
       <nav className="custom-width mx-auto flex h-full items-center justify-between">

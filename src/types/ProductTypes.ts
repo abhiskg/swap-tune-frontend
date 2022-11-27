@@ -3,7 +3,7 @@ export interface ProductInputTypes {
   image: string;
   originalPrice: number;
   resalePrice: number;
-  condition: string;
+  condition: "excellent" | "good" | "fair";
   yearOfUse: number;
   location: string;
   description: string;
@@ -16,6 +16,6 @@ export interface ProductDataTypes extends ProductInputTypes {
   _id: string;
   isSellerVerified: boolean;
   isAdvertised: boolean;
-  status: string;
+  status: "available" | "sold";
   createdAt: string;
 }

@@ -21,7 +21,7 @@ const ProductSchema = z.object({
     })
     .positive(),
   resalePrice: z.number().min(1).positive(),
-  condition: z.string().min(1, { message: "Please select product condition" }),
+  condition: z.enum(["excellent", "good", "fair"]),
   yearOfUse: z.number().min(1).positive(),
   location: z.string().min(1, { message: "Please enter your location" }),
   description: z

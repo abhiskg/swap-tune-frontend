@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -26,6 +26,7 @@ const Register = () => {
   useDocTitle("Register");
   const authContext = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -80,6 +81,7 @@ const Register = () => {
             setLoading(false);
             reset();
             toast.success("Congratulation! Registration Successful");
+            navigate("/");
           })
           .catch((err: any) => {
             toast.error("Something went wrong, please try again later");
