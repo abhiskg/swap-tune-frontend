@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../layout/Dashboard";
 import Main from "../layout/Main";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
@@ -18,6 +17,8 @@ import Blog from "../pages/blog/Blog";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 import BuyerRoute from "./BuyerRoute";
+import DashboardLayout from "../layout/DashboardLayout";
+import Dashboard from "../pages/dashboard/Dashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,10 +58,14 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <PrivateRoute>
-        <Dashboard />
+        <DashboardLayout />
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
       {
         path: "/dashboard/my-orders",
         element: (

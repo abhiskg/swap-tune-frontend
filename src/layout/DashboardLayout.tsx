@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/ui/Header";
 import SideNavbar from "../components/ui/SideNavbar";
 
-const Dashboard = () => {
+const DashboardLayout = () => {
   return (
     <div>
       <Header />
@@ -17,4 +17,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardLayout;
