@@ -18,6 +18,7 @@ const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (userRole === "admin") {
+    authContext?.setUserType(userRole);
     return <>{children}</>;
   }
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;

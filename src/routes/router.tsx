@@ -17,6 +17,7 @@ import PrivateRoute from "./PrivateRoute";
 import Blog from "../pages/blog/Blog";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
+import BuyerRoute from "./BuyerRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -61,12 +62,12 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard",
-        element: <MyOrders />,
-      },
-      {
         path: "/dashboard/my-orders",
-        element: <MyOrders />,
+        element: (
+          <BuyerRoute>
+            <MyOrders />
+          </BuyerRoute>
+        ),
       },
       {
         path: "/dashboard/seller/add-product",

@@ -48,7 +48,13 @@ const Header = () => {
             <>
               <li className="hover:text-blue-900">
                 <NavLink
-                  to="/dashboard"
+                  to={`${
+                    authContext.userType === "seller"
+                      ? "/dashboard/seller/my-products"
+                      : authContext.userType === "admin"
+                      ? "/dashboard/admin/all-buyers"
+                      : "/dashboard/my-orders"
+                  }`}
                   className={({ isActive }) =>
                     isActive ? " text-blue-900 dark:text-violet-400" : ""
                   }
