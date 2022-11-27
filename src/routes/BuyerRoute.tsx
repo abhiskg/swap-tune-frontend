@@ -1,14 +1,15 @@
 import { useContext } from "react";
-import toast from "react-hot-toast";
 import { Navigate, useLocation } from "react-router-dom";
 import PingLoader from "../components/loaders/PingLoader";
 import { AuthContext } from "../context/AuthContext";
+import useCheckUserRole from "../hooks/useCheckUserRole";
 
-const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+const BuyerRoute = ({ children }: { children: React.ReactNode }) => {
   const authContext = useContext(AuthContext);
   const location = useLocation();
+  const { loading, userRole } = useCheckUserRole();
 
-  if (authContext?.loading) {
+  if (loading) {
     return (
       <div>
         <PingLoader />
@@ -16,11 +17,10 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  if (authContext?.user?.uid) {
+  if (userRole === "buyer") {
     return <>{children}</>;
   }
-
   return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
-export default PrivateRoute;
+export default BuyerRoute;

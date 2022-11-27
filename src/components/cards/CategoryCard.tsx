@@ -4,7 +4,7 @@ import { CategoryDataType } from "../../types/CategoryTypes";
 const CategoryCard = ({ category }: { category: CategoryDataType }) => {
   return (
     <Link
-      to={`/category/${category._id}`}
+      to={`/category/${category.categoryName}`}
       className="relative rounded overflow-hidden shadow"
     >
       <div className="contrast-75 h-40 ">

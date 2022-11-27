@@ -22,7 +22,7 @@ export const useAddCategory = () => {
   return useMutation(addCategory, {
     onSuccess: () => {
       toast.success("New Category Added");
-      queryClient.invalidateQueries(["all-categories"]);
+      queryClient.invalidateQueries(["all-category"]);
     },
   });
 };

@@ -9,6 +9,12 @@ const fetchMyProducts: (email: string) => Promise<ProductDataTypes[]> = (
   return request({ url: `/api/product/${email}` });
 };
 
+const fetchProductsByCategory: (
+  category: string
+) => Promise<ProductDataTypes[]> = (category: string) => {
+  return request({ url: `/api/product/${category}` });
+};
+
 const fetchAdvertisedProduct: () => Promise<ProductDataTypes[]> = () => {
   return request({ url: `/api/product?status=available&isAdvertised=true` });
 };
@@ -27,6 +33,12 @@ const deleteProduct = (id: string) => {
 
 export const useMyProductsData = (email: string) => {
   return useQuery(["my-products"], () => fetchMyProducts(email));
+};
+
+export const useProductsByCategory = (category: string) => {
+  return useQuery(["products", category], () =>
+    fetchProductsByCategory(category)
+  );
 };
 
 export const useAdvertiseProducts = () => {

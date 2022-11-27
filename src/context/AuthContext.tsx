@@ -21,6 +21,10 @@ interface AuthContextType {
   updateUser: (name: string, user: User) => Promise<void>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserType: React.Dispatch<
+    React.SetStateAction<"admin" | "buyer" | "seller" | null>
+  >;
+  userType: "admin" | "buyer" | "seller" | null;
 }
 
 export const AuthContext = createContext<null | AuthContextType>(null);
@@ -28,6 +32,9 @@ export const AuthContext = createContext<null | AuthContextType>(null);
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
+  const [userType, setUserType] = useState<null | "admin" | "buyer" | "seller">(
+    null
+  );
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currUser) => {
@@ -78,6 +85,8 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
         updateUser,
         loading,
         setLoading,
+        userType,
+        setUserType,
       }}
     >
       {children}
