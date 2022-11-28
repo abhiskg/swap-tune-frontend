@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddCategory } from "../../../hooks/useCategoryData";
 import useDocTitle from "../../../hooks/useDocTitle";
+import SpinLoader from "../../../components/loaders/SpinLoader";
 
 const CategorySchema = z.object({
   categoryName: z.string().min(1, { message: "Please enter category name" }),
@@ -16,7 +17,7 @@ type CategorySchemaType = z.infer<typeof CategorySchema>;
 
 const AddCategory = () => {
   useDocTitle("Add-Category");
-  
+
   const { mutate, isLoading } = useAddCategory();
 
   const {
@@ -34,7 +35,6 @@ const AddCategory = () => {
   };
   return (
     <div className=" grid place-items-center ">
-      <h2>Add new Category</h2>
       <form onSubmit={handleSubmit(handleAddCategory)}>
         <div className="space-y-1">
           <label htmlFor="categoryName">Category Name</label>
@@ -62,7 +62,12 @@ const AddCategory = () => {
             <p className="error-message">{errors.image?.message}</p>
           )}
         </div>
-        <button type="submit">Add Category</button>
+        <button
+          className="auth-button mt-5 grid place-items-center"
+          type="submit"
+        >
+          {isLoading ? <SpinLoader /> : "Add Category"}
+        </button>
       </form>
     </div>
   );

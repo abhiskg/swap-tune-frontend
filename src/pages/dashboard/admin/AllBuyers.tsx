@@ -33,14 +33,14 @@ const AllBuyers = () => {
           <colgroup>
             <col className="w-60" />
             <col />
-            <col className="w-24" />
+            <col />
             <col className="w-24" />
           </colgroup>
           <thead className=" bg-gray-300">
             <tr className="text-left">
               <th className="p-3">Buyer Name</th>
               <th className="p-3">Email</th>
-              <th className="p-3 text-right">Change Role</th>
+              <th className="p-3 ">Change Role</th>
               <th className="p-3 text-right">Delete</th>
             </tr>
           </thead>
@@ -57,9 +57,14 @@ const AllBuyers = () => {
                   <td className="p-3">
                     <p>{buyer.email}</p>
                   </td>
-                  <td className="p-3 text-center">
+                  <td className="p-3 ">
                     {buyer.role !== "admin" && (
-                      <p onClick={() => handleAdmin(buyer._id)}>Make Admin</p>
+                      <span
+                        className="bg-green-500 text-white p-1 rounded cursor-pointer"
+                        onClick={() => handleAdmin(buyer._id)}
+                      >
+                        Make Admin
+                      </span>
                     )}
                   </td>
                   <td className="p-3 text-right">

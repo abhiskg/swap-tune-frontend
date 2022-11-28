@@ -2,11 +2,18 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useToggleProductReportedOption } from "../../hooks/useProductsData";
 import BookingModal from "../../modals/BookingModal";
 import { ProductDataTypes } from "../../types/ProductTypes";
 
 const ProductCard = ({ product }: { product: ProductDataTypes }) => {
   const authContext = useContext(AuthContext);
+  const { mutate } = useToggleProductReportedOption();
+
+  const handleReportItem = (id: string) => {
+    const data = { id, report: "report" };
+    mutate(data);
+  };
   return (
     <div className="h-full overflow-hidden rounded-lg border-1 shadow border-gray-200 border-opacity-60">
       <div className="relative md:h-36 lg:h-48">
@@ -28,16 +35,13 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
           <h3 className=" font-medium text-gray-900 text-lg">
             {product.productName}
           </h3>
-          <div>{product.location}</div>
+          <div
+            onClick={() => handleReportItem(product._id)}
+            className=" text-sm text-gray-50 bg-red-400 p-1 hover:bg-red-500 cursor-pointer rounded"
+          >
+            Report item
+          </div>
         </div>
-        <p className=" text-sm text-green-500 font-medium">
-          Condition: {product.condition}
-        </p>
-        <p className="text-xs font-medium text-gray-600">
-          Used for {product.yearOfUse}{" "}
-          {product.yearOfUse < 2 ? "year" : "years"}
-        </p>
-
         <div className="flex items-center gap-1  font-medium text-gray-600">
           Price:
           <p className=" text-gray-600">
@@ -50,10 +54,19 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
             $
           </p>
         </div>
-        <div className="flex items-center  gap-1">
-          <p className=" font-medium text-gray-600">
+        <p className=" text-sm text-green-500 font-medium">
+          Condition: {product.condition}
+        </p>
+        <p className=" text-sm font-medium text-gray-600">
+          Used for {product.yearOfUse}{" "}
+          {product.yearOfUse < 2 ? "year" : "years"}
+        </p>
+
+        <div className=" flex items-center  gap-1">
+          <p className=" text-sm font-medium text-gray-600">
             Seller: {product.sellerName}
           </p>
+
           {product.isSellerVerified && (
             <div className="bg-green-500 p-[1.5px] rounded-full">
               <svg
@@ -72,6 +85,9 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
               </svg>
             </div>
           )}
+        </div>
+        <div className="text-sm font-medium text-gray-600">
+          Location {product.location}
         </div>
         {authContext?.user?.uid ? (
           <BookingModal product={product} />

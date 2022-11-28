@@ -19,12 +19,22 @@ const fetchAdvertisedProduct: () => Promise<ProductDataTypes[]> = () => {
   return request({ url: `/api/product?status=available&isAdvertised=true` });
 };
 
+const fetchReportedProduct: () => Promise<ProductDataTypes[]> = () => {
+  return request({ url: `/api/product/reports` });
+};
+
 const createNewProduct = (products: ProductInputTypes) => {
   return request({ url: `/api/product`, method: "post", data: products });
 };
 
 const toggleAdvertiseMode = (id: string) => {
-  return request({ url: `/api/product/${id}`, method: "patch" });
+  return request({ url: `/api/product/advertise/${id}`, method: "patch" });
+};
+const toggleProductReportedOption = (data: { id: string; report: string }) => {
+  return request({
+    url: `/api/product/reports?id=${data.id}&report=${data.report}`,
+    method: "patch",
+  });
 };
 
 const deleteProduct = (id: string) => {
@@ -45,6 +55,10 @@ export const useAdvertiseProducts = () => {
   return useQuery(["product-advertised"], fetchAdvertisedProduct);
 };
 
+export const useReportedProducts = () => {
+  return useQuery(["product-reported"], fetchReportedProduct);
+};
+
 export const useCreateProduct = () => {
   const queryClient = useQueryClient();
   return useMutation(createNewProduct, {
@@ -62,6 +76,17 @@ export const useToggleAdvertiseMode = () => {
       queryClient.invalidateQueries(["my-products"]);
       queryClient.invalidateQueries(["product-advertised"]);
       toast.success("Advertise mode updated");
+    },
+  });
+};
+
+export const useToggleProductReportedOption = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(toggleProductReportedOption, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["product-reported"]);
+      toast.success("Product Reported");
     },
   });
 };
