@@ -24,6 +24,7 @@ type RegisterSchemaType = z.infer<typeof RegisterSchema>;
 
 const Register = () => {
   useDocTitle("Register");
+
   const authContext = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

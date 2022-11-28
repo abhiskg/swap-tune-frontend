@@ -2,10 +2,12 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+
 import { OrderDataTypes } from "../../../../types/OrderTypes";
 import { request } from "../../../../utils/axios.utils";
 
 const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
+
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [cardError, setCardError] = useState("");

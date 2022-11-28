@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { useCreateProduct } from "../../../hooks/useProductsData";
 import toast from "react-hot-toast";
+import useDocTitle from "../../../hooks/useDocTitle";
 
 const ProductSchema = z.object({
   productName: z.string().min(1, { message: "Please enter product name" }),
@@ -33,6 +34,7 @@ const ProductSchema = z.object({
 type ProductSchemaType = z.infer<typeof ProductSchema>;
 
 const AddProduct = () => {
+  useDocTitle("Add-product");
   const authContext = useContext(AuthContext);
   const { data: categories, isLoading } = useCategoryData();
   const { mutate } = useCreateProduct();

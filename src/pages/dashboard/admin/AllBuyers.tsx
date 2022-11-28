@@ -1,4 +1,5 @@
 import PingLoader from "../../../components/loaders/PingLoader";
+import useDocTitle from "../../../hooks/useDocTitle";
 import {
   useDeleteUser,
   useMakeAdminUser,
@@ -7,6 +8,8 @@ import {
 import DeleteModal from "../../../modals/DeleteModal";
 
 const AllBuyers = () => {
+  useDocTitle("All-buyers");
+
   const { data: buyers, isLoading, isError, error } = useUsersData("buyer");
   const { mutate } = useMakeAdminUser("buyer");
   const { mutate: mutateDelete } = useDeleteUser("buyer");

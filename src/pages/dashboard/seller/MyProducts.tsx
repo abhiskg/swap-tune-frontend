@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import useDocTitle from "../../../hooks/useDocTitle";
 import {
   useDeleteProduct,
   useMyProductsData,
@@ -8,6 +9,8 @@ import {
 import DeleteModal from "../../../modals/DeleteModal";
 
 const MyProducts = () => {
+  useDocTitle("My-products");
+
   const authContext = useContext(AuthContext);
   const { isLoading, data: products } = useMyProductsData(
     authContext?.user?.email as string

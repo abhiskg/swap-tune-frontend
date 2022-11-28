@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import PingLoader from "../../../components/loaders/PingLoader";
 import { AuthContext } from "../../../context/AuthContext";
+import useDocTitle from "../../../hooks/useDocTitle";
 import { useDeleteUser, useUsersData } from "../../../hooks/useUsersData";
 import DeleteModal from "../../../modals/DeleteModal";
 
 const AllAdmins = () => {
+  useDocTitle("All-admins");
   const authContext = useContext(AuthContext);
   const { data: admins, isLoading } = useUsersData("admin");
   const { mutate: mutateDelete } = useDeleteUser("admin");

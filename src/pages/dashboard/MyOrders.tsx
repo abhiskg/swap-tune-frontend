@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import PingLoader from "../../components/loaders/PingLoader";
 import { AuthContext } from "../../context/AuthContext";
+import useDocTitle from "../../hooks/useDocTitle";
 import { useOrdersData } from "../../hooks/useOrdersData";
 
 const MyOrders = () => {
+  useDocTitle("My-orders");
+  
   const authContext = useContext(AuthContext);
   const { isLoading, data: orders } = useOrdersData(
     authContext?.user?.email as string

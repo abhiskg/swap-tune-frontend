@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
 import ProductCard from "../../components/cards/ProductCard";
 import PingLoader from "../../components/loaders/PingLoader";
+import useDocTitle from "../../hooks/useDocTitle";
 import { useProductsByCategory } from "../../hooks/useProductsData";
 
 const Products = () => {
+  useDocTitle("Products");
+
   const { id } = useParams();
   const { data: products, isLoading } = useProductsByCategory(id as string);
   if (isLoading) {

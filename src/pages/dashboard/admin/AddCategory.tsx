@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddCategory } from "../../../hooks/useCategoryData";
+import useDocTitle from "../../../hooks/useDocTitle";
 
 const CategorySchema = z.object({
   categoryName: z.string().min(1, { message: "Please enter category name" }),
@@ -14,6 +15,8 @@ const CategorySchema = z.object({
 type CategorySchemaType = z.infer<typeof CategorySchema>;
 
 const AddCategory = () => {
+  useDocTitle("Add-Category");
+  
   const { mutate, isLoading } = useAddCategory();
 
   const {

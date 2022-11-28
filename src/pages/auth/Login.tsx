@@ -25,6 +25,7 @@ type LoginSchemaType = z.infer<typeof LoginSchema>;
 
 const Login = () => {
   useDocTitle("Login");
+  
   const [loading, setLoading] = useState(false);
   const authContext = useContext(AuthContext);
 
