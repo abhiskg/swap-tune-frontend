@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header className=" bg-primary sticky top-0 z-10 h-16  dark:bg-gray-900 dark:text-gray-100">
+    <header className=" bg-fuchsia-400 sticky top-0 z-10 h-16  dark:bg-gray-900 dark:text-gray-100">
       <nav className="custom-width mx-auto flex h-full items-center justify-between">
         <Link className=" text-xl font-semibold" to="/">
           <span className="">SWAP TUNE</span>
@@ -128,14 +128,11 @@ const Header = () => {
       <nav
         className={`${
           menu ? "translate-x-48" : "translate-x-full"
-        } no-scrollbar fixed top-0 right-0 bottom-0 z-40 w-full overflow-y-auto bg-blue-400 transition-transform duration-200 ease-in-out dark:bg-gray-900 dark:text-gray-100 md:hidden `}
+        } no-scrollbar fixed top-0 right-0 bottom-0 z-40 w-full overflow-y-auto bg-fuchsia-400 transition-transform duration-200 ease-in-out dark:bg-gray-900 dark:text-gray-100 md:hidden `}
       >
         <ul className="ml-10 mt-32 mb-10 flex flex-col gap-7 ">
           <li onClick={() => setMenu(false)}>
             <Link to="/home">Home</Link>
-          </li>
-          <li onClick={() => setMenu(false)}>
-            <Link to="/services">Services</Link>
           </li>
           <li onClick={() => setMenu(false)}>
             <Link to="/blog">Blog</Link>
