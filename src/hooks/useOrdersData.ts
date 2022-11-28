@@ -1,13 +1,31 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { OrderInputTypes } from "../types/OrderTypes";
+import { OrderDataTypes, OrderInputTypes } from "../types/OrderTypes";
 import { request } from "../utils/axios.utils";
+
+const fetchOrdersByEmail: (email: string) => Promise<OrderDataTypes[]> = (
+  email: string
+) => {
+  return request({ url: `/api/order?email=${email}` });
+};
+
+const fetchOrderById: (id: string) => Promise<OrderDataTypes> = (
+  id: string
+) => {
+  return request({ url: `/api/order/${id}` });
+};
 
 const createNewOrder = (order: OrderInputTypes) => {
   return request({ url: `/api/order`, method: "post", data: order });
 };
 
-export const useOrdersData = () => {};
+export const useOrdersData = (email: string) => {
+  return useQuery(["my-orders"], () => fetchOrdersByEmail(email));
+};
+
+export const useOrderData = (id: string) => {
+  return useQuery(["order", id], () => fetchOrderById(id));
+};
 
 export const useCreateNewOrder = () => {
   const queryClient = useQueryClient();

@@ -19,6 +19,7 @@ import SellerRoute from "./SellerRoute";
 import BuyerRoute from "./BuyerRoute";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
+import Payment from "../pages/dashboard/payment/Payment";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
         element: (
           <BuyerRoute>
             <MyOrders />
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <BuyerRoute>
+            <Payment />
           </BuyerRoute>
         ),
       },

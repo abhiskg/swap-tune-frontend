@@ -18,4 +18,5 @@ export interface ProductDataTypes extends ProductInputTypes {
   isAdvertised: boolean;
   status: "available" | "sold";
   createdAt: string;
+  isReported: boolean;
 }
