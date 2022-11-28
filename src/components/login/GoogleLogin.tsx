@@ -18,7 +18,7 @@ const GoogleLogin = () => {
       ?.signInWithProvider(provider)
       .then(({ user }) => {
         axios
-          .post("http://localhost:5000/api/user", {
+          .post("https://swap-tune.onrender.com/api/user", {
             name: user.displayName,
             email: user.email,
           })

@@ -14,8 +14,8 @@ const Products = () => {
   }
 
   return (
-    <div className="custom-width mx-auto">
-      <div className="grid grid-cols-3 gap-4">
+    <div className="custom-width mx-auto my-10">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
         {products &&
           products.map((product) => (
             <ProductCard key={product._id} product={product} />

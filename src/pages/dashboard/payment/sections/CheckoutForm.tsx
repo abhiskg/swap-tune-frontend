@@ -7,7 +7,6 @@ import { OrderDataTypes } from "../../../../types/OrderTypes";
 import { request } from "../../../../utils/axios.utils";
 
 const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
-
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [cardError, setCardError] = useState("");
@@ -113,7 +112,11 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
             },
           }}
         />
-        <button type="submit" disabled={!stripe || !clientSecret}>
+        <button
+          className="bg-sky-500 px-2 py-1 rounded text-white mt-5"
+          type="submit"
+          disabled={!stripe || !clientSecret}
+        >
           Pay
         </button>
       </form>

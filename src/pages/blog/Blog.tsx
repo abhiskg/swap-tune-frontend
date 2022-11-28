@@ -8,25 +8,25 @@ const Blog = () => {
       question:
         "What are the different ways to manage a state in a React application?",
       answer:
-        "SQL databases are primarily called as Relational Databases (RDBMS); whereas NoSQL database are primarily called as non-relational or distributed database. SQL databases are table-based databases, whereas NoSQL databases can be document-based, key-value pairs, and graph databases. SQL databases are vertically scalable, while NoSQL databases are horizontally scalable. SQL databases have a predefined schema, whereas NoSQL databases use a dynamic schema for unstructured data",
+        "There are four main types of state you need to properly manage in your React apps.Local state, Global state, Server state, URL state. Local state is most often managed in React using the useState hook. useReducer is another option that can be used for either local or global state. Global state is data we manage across multiple components. UseContext, Zustand, Jotai, and Recoil are used to manage it. Server state is managed my useEffect.",
     },
     {
       id: 2,
       question: "How does prototypical inheritance work?",
       answer:
-        "JWT, or JSON Web Token, is an open standard used to share security information between two parties — a client and a server. Each JWT contains encoded JSON objects, including a set of claims. JWTs are signed using a cryptographic algorithm to ensure that the claims cannot be altered after the token is issued. JWT differ from other web tokens in that they contain a set of claims. Claims are used to transmit information between two parties. What these claims are depends on the use case at hand. For example, a claim may assert who issued the token, how long it is valid for, or what permissions the client has been granted",
+        "Prototypical inheritance refers to the ability to access object properties from another object. We use a JavaScript prototype to add new properties and methods to an existing object constructor. We can then essentially tell our JS code to inherit properties from a prototype. Prototypical inheritance allows us to reuse the properties or methods from one JavaScript object to another through a reference pointer function.",
     },
     {
       id: 3,
       question: "What is a unit test? Why should we write unit tests?",
       answer:
-        "JavaScript is a simple programming language that can be used with any browser that has the JavaScript Engine installed. NodeJs, on the other hand, is an interpreter or execution environment for the JavaScript programming language. Javascript is a high-level programming language that uses the concept of Oops but it is based on prototype inheritance.  Nodejs allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development. ",
+        "Unit testing is a software development process in which the smallest testable parts of an application, called units, are individually and independently scrutinized for proper operation. This testing methodology is done during the development process by the software developers and sometimes QA staff.  The main objective of unit testing is to isolate written code to test and determine if it works as intended.Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.",
     },
     {
       id: 4,
       question: "React vs. Angular vs. Vue?",
       answer:
-        "NodeJS server uses an EventQueue, which queues incoming client requests and an EventLoop which is an infinite loop that receives requests and processes them. This EventLoop is single threaded and acts as a listener for the EventQueue which processes incoming requests based on FIFO policy. When a new request comes in, NodeJS checks if it requires any blocking IO operations, if not, the EventLoop processes it and sends the response back to the client directly. If yes, then the request is forwarded to the thread manager, which then based on an algorithm, picks up an idle thread from the pool and lets it process the request. After completion of the request processing operation, the thread, returns the response back to the EventLoop which is then forwarded to the client. ",
+        "Angular has a steep learning curve, considering it is a complete solution, and mastering Angular requires you to learn associated concepts like TypeScript and MVC. Vue provides higher customizability and hence is easier to learn than Angular or React. Further, Vue has an overlap with Angular and React with respect to their functionality like the use of components. Hence, the transition to Vue from either of the two is an easy option. React offers a Getting Started guide that should help one set up React in about an hour. The documentation is thorough and complete, with solutions to common issues already present on Stack Overflow. React is not a complete framework and advanced features require the use of third-party libraries.",
     },
   ];
 

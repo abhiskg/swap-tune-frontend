@@ -1,12 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { ProductDataTypes, ProductInputTypes } from "../types/ProductTypes";
 import { request } from "../utils/axios.utils";
 
 const fetchMyProducts: (email: string) => Promise<ProductDataTypes[]> = (
   email: string
 ) => {
-  return request({ url: `/api/product/${email}` });
+  return request({ url: `/api/product/seller/${email}` });
 };
 
 const fetchProductsByCategory: (
@@ -28,7 +29,7 @@ const createNewProduct = (products: ProductInputTypes) => {
 };
 
 const toggleAdvertiseMode = (id: string) => {
-  return request({ url: `/api/product/advertise/${id}`, method: "patch" });
+  return request({ url: `/api/product/${id}`, method: "patch" });
 };
 const toggleProductReportedOption = (data: { id: string; report: string }) => {
   return request({
@@ -60,11 +61,13 @@ export const useReportedProducts = () => {
 };
 
 export const useCreateProduct = () => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation(createNewProduct, {
     onSuccess: () => {
       queryClient.invalidateQueries(["my-products"]);
       toast.success("New Product Added");
+      navigate("/dashboard/seller/my-products");
     },
   });
 };

@@ -191,7 +191,12 @@ const AddProduct = () => {
             <p className="error-message">{errors.description?.message}</p>
           )}
         </div>
-        <button type="submit">Add Product</button>
+        <button
+          className="auth-button grid place-items-center mt-3"
+          type="submit"
+        >
+          {isLoading ? <PingLoader /> : "Add Product"}
+        </button>
       </form>
     </div>
   );

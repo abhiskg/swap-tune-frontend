@@ -16,7 +16,7 @@ const Payment = () => {
     return <PingLoader />;
   }
   return (
-    <div className="w-96">
+    <div className="w-96 mx-auto mt-20">
       {order && (
         <Elements stripe={stripePromise}>
           <CheckoutForm order={order} />

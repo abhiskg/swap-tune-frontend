@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import PingLoader from "../../../components/loaders/PingLoader";
 import { AuthContext } from "../../../context/AuthContext";
 import useDocTitle from "../../../hooks/useDocTitle";
 import {
@@ -21,6 +22,9 @@ const MyProducts = () => {
   const handleUpdateAdvertiseMode = (id: string) => {
     mutate(id);
   };
+  if (isLoading) {
+    return <PingLoader />;
+  }
   return (
     <div>
       <div className="overflow-x-auto">
@@ -65,7 +69,7 @@ const MyProducts = () => {
                       {product.status}
                     </p>
                   </td>
-                  {product.status === "available" && (
+                  {product.status === "available" ? (
                     <td className="p-3 text-center">
                       <span
                         onClick={() => handleUpdateAdvertiseMode(product._id)}
@@ -81,6 +85,10 @@ const MyProducts = () => {
                           </span>
                         )}
                       </span>
+                    </td>
+                  ) : (
+                    <td className="p-3 text-center">
+                      <p>None</p>
                     </td>
                   )}
 
