@@ -70,7 +70,7 @@ const Register = () => {
       ?.updateUser(name, user)
       .then(() => {
         axios
-          .post("http://localhost:5000/api/user", {
+          .post("https://swap-tune.onrender.com/api/user", {
             name,
             email,
             role,

@@ -25,7 +25,7 @@ type LoginSchemaType = z.infer<typeof LoginSchema>;
 
 const Login = () => {
   useDocTitle("Login");
-  
+
   const [loading, setLoading] = useState(false);
   const authContext = useContext(AuthContext);
 
@@ -50,7 +50,7 @@ const Login = () => {
       ?.signIn(email, password)
       .then(({ user }) => {
         axios
-          .post("http://localhost:5000/api/user", {
+          .post("https://swap-tune.onrender.com/api/user", {
             name: user.displayName,
             email: user.email,
           })
