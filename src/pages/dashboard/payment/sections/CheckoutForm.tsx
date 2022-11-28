@@ -1,4 +1,5 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { OrderDataTypes } from "../../../../types/OrderTypes";
@@ -6,6 +7,8 @@ import { request } from "../../../../utils/axios.utils";
 
 const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
   const [clientSecret, setClientSecret] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [cardError, setCardError] = useState("");
 
   const price = order?.productPrice;
 
@@ -40,12 +43,14 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
       card,
     });
 
-    if (error && error instanceof Error) {
-      toast.error(error.message);
+    if (error) {
+      if (error !== undefined) {
+        setCardError(error?.message as string);
+      }
     } else {
-      console.log(paymentMethod);
+      setCardError("");
     }
-
+    setLoading(true);
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -56,11 +61,13 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
           },
         },
       });
-    console.log("card", card);
     if (confirmError) {
-      console.log(confirmError.message);
+      if (confirmError !== undefined) {
+        setCardError(confirmError?.message as string);
+      }
       return;
     }
+    setCardError("");
     if (paymentIntent.status === "succeeded") {
       const payment = {
         username: order?.userName,
@@ -74,8 +81,15 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
         transactionId: paymentIntent.id,
         transactionStatus: paymentIntent.status,
       };
+      request({ url: `/api/payment`, method: "post", data: payment })
+        .then((data) => {
+          setLoading(false);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-    console.log("paymentintend", paymentIntent);
   };
 
   return (

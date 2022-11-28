@@ -26,5 +26,9 @@
   }
 }
 .custom-width {
-  width: min(1360px, 94%);
+  width: min(1300px, 94%);
+}
+
+.inner-width {
+  width: min(94%, 1050px);
 }

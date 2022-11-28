@@ -20,10 +20,12 @@ import BuyerRoute from "./BuyerRoute";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Payment from "../pages/dashboard/payment/Payment";
+import ErrorPage from "../pages/error/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -62,6 +64,7 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/dashboard",

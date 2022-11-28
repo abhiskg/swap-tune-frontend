@@ -18,14 +18,14 @@ const makeAdminUser = (id: string) => {
 };
 
 export const useUsersData = (role: string) => {
-  return useQuery(["all-users", role], () => fetchUsersData(role));
+  return useQuery(["user", role], () => fetchUsersData(role));
 };
 
 export const useDeleteUser = (role: string) => {
   const queryClient = useQueryClient();
   return useMutation(deleteUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["all-users", role]);
+      queryClient.invalidateQueries(["user", role]);
       toast.success("User Deleted Successfully");
     },
   });
@@ -35,8 +35,8 @@ export const useMakeAdminUser = (role: string) => {
   const queryClient = useQueryClient();
   return useMutation(makeAdminUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["all-users", role]);
-      queryClient.invalidateQueries(["all-users", "admin"]);
+      queryClient.invalidateQueries(["user", role]);
+      queryClient.invalidateQueries(["user", "admin"]);
       toast.success("New admin added, check all admin section");
     },
   });
