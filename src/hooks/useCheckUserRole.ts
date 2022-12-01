@@ -9,12 +9,18 @@ const useCheckUserRole = () => {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
-    request({ url: `/api/user/role` }).then((role) => {
-      setUserRole(role);
-      console.log(role);
-      authContext?.setUserType(role);
-      setLoading(false);
-    });
+    request({ url: `/api/v1/user/role` })
+      .then((role) => {
+        setUserRole(role);
+        console.log(role);
+        authContext?.setUserType(role);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err.message === "Forbidden") {
+          authContext?.logOut();
+        }
+      });
   }, []);
   return { userRole, loading };
 };

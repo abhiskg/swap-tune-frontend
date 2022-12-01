@@ -4,13 +4,17 @@ import { CategoryDataType, CategoryInputType } from "../types/CategoryTypes";
 import { request } from "../utils/axios.utils";
 
 const addCategory = (data: CategoryInputType) => {
-  return request({ url: `/api/category`, method: "post", data: data });
+  return request({
+    url: `/api/v1/admin/category/new`,
+    method: "post",
+    data: data,
+  });
 };
 
 const fetchAllCategories: () => Promise<
   CategoryDataType[] | undefined
 > = () => {
-  return request({ url: `/api/category` });
+  return request({ url: `/api/v1/categories` });
 };
 
 export const useCategoryData = () => {

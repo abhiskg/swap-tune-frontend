@@ -6,15 +6,15 @@ import { request } from "../utils/axios.utils";
 const fetchUsersData: (role: string) => Promise<UserDataType[]> = (
   role: string
 ) => {
-  return request({ url: `/api/user?role=${role}` });
+  return request({ url: `/api/v1/users?role=${role}` });
 };
 
 const deleteUser = (id: string) => {
-  return request({ url: `/api/user/${id}`, method: "delete" });
+  return request({ url: `/api/v1/admin/user/${id}`, method: "delete" });
 };
 
 const makeAdminUser = (id: string) => {
-  return request({ url: `/api/user/${id}`, method: "patch" });
+  return request({ url: `/api/v1/admin/user/${id}`, method: "patch" });
 };
 
 export const useUsersData = (role: string) => {

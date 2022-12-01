@@ -50,7 +50,7 @@ const Login = () => {
       ?.signIn(email, password)
       .then(({ user }) => {
         axios
-          .post("https://swap-tune.onrender.com/api/user", {
+          .post("http://localhost:5000/api/v1/user/new", {
             name: user.displayName,
             email: user.email,
           })
