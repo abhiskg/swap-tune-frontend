@@ -5,8 +5,11 @@ const ProductCardSkeleton = () => {
 
       <div className="bg-gray-50 p-6">
         <div className="title-font mb-2 h-4 rounded bg-gray-300"></div>
-        <div className="mb-3 h-12 rounded bg-gray-300"></div>
-        <div className="mb-3  h-4 w-1/4 rounded bg-gray-300"></div>
+        <div className="mb-3  h-4 w-7/12 rounded bg-gray-300"></div>
+        <div className="mb-3  h-4 w-7/12 rounded bg-gray-300"></div>
+        <div className="mb-3  h-4 w-6/12 rounded bg-gray-300"></div>
+        <div className="mb-3  h-4 w-5/12 rounded bg-gray-300"></div>
+        <div className="mt-3  h-8 w-full rounded bg-gray-300"></div>
       </div>
     </div>
   );
