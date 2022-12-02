@@ -18,7 +18,7 @@ const GoogleLogin = () => {
       ?.signInWithProvider(provider)
       .then(({ user }) => {
         axios
-          .post("http://localhost:5000/api/v1/user/new", {
+          .post("https://swap-tune.vercel.app/api/v1/user/new", {
             name: user.displayName,
             email: user.email,
           })

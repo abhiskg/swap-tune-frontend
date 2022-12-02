@@ -70,7 +70,7 @@ const Register = () => {
       ?.updateUser(name, user)
       .then(() => {
         axios
-          .post("http://localhost:5000/api/v1/user/new", {
+          .post("https://swap-tune.vercel.app/api/v1/user/new", {
             name,
             email,
             role,
