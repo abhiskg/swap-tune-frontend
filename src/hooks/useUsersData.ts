@@ -6,7 +6,7 @@ import { request } from "../utils/axios.utils";
 const fetchUsersData: (role: string) => Promise<UserDataType[]> = (
   role: string
 ) => {
-  return request({ url: `/api/v1/users?role=${role}` });
+  return request({ url: `/api/v1/admin/users?role=${role}` });
 };
 
 const deleteUser = (id: string) => {
@@ -35,8 +35,7 @@ export const useMakeAdminUser = (role: string) => {
   const queryClient = useQueryClient();
   return useMutation(makeAdminUser, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["user", role]);
-      queryClient.invalidateQueries(["user", "admin"]);
+      queryClient.invalidateQueries(["user"]);
       toast.success("New admin added, check all admin section");
     },
   });

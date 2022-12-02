@@ -13,7 +13,7 @@
 - Stripe payment Intrigrated
 - Role base dashboard route will change
 
-**Technologies Used:** React, React-router, React Query, Tailwind CSS, Firebase, React-hook-form, Zod, React-hot-toast, React-phto-view, Axios, MongoDB
+**Technologies Used:** Typescript, React, React Query, Tailwind CSS, Express, Mongoose, Firebase, JsonWebToken, Stripe, React-router, React-hook-form, Zod, Axios, React-hot-toast.
 
 **Admin Email:** admin@gmail.com
 **Admin Password:** 12345678

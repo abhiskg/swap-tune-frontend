@@ -12,7 +12,6 @@ const useCheckUserRole = () => {
     request({ url: `/api/v1/user/role` })
       .then((role) => {
         setUserRole(role);
-        console.log(role);
         authContext?.setUserType(role);
         setLoading(false);
       })

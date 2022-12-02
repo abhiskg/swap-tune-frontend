@@ -2,6 +2,8 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import SpinLoader from "../../../../components/loaders/SpinLoader";
 
 import { OrderDataTypes } from "../../../../types/OrderTypes";
 import { request } from "../../../../utils/axios.utils";
@@ -15,16 +17,17 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
 
   useEffect(() => {
     request({
-      url: `api/create-payment-intend`,
+      url: `api/v1/stripeapi`,
       method: "post",
       data: { price },
     }).then((data) => {
       setClientSecret(data);
     });
   }, []);
-
+  const queryClient = useQueryClient();
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -48,6 +51,7 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
       if (error !== undefined) {
         setCardError(error?.message as string);
       }
+      console.log(error);
     } else {
       setCardError("");
     }
@@ -65,6 +69,8 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
     if (confirmError) {
       if (confirmError !== undefined) {
         setCardError(confirmError?.message as string);
+        console.log(confirmError);
+        setLoading(false);
       }
       return;
     }
@@ -82,10 +88,12 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
         transactionId: paymentIntent.id,
         transactionStatus: paymentIntent.status,
       };
-      request({ url: `/api/payment`, method: "post", data: payment })
-        .then((data) => {
+      request({ url: `/api/v1/payment/process`, method: "post", data: payment })
+        .then(() => {
+          queryClient.invalidateQueries(["products"]);
+          toast.success("Payment Successful");
           setLoading(false);
-          console.log(data);
+          navigate("/dashboard/my-orders");
         })
         .catch((err) => {
           console.log(err);
@@ -113,13 +121,14 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
           }}
         />
         <button
-          className="bg-sky-500 px-2 py-1 rounded text-white mt-5"
+          className="bg-sky-500 px-4 py-1 rounded text-white mt-5 grid place-items-center"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || loading}
         >
-          Pay
+          {loading ? <SpinLoader /> : "Pay"}
         </button>
       </form>
+      <p className="text-sm text-red-500 font-medium">{cardError}</p>
     </div>
   );
 };
