@@ -2,8 +2,18 @@
 
 **Website Link:** [https://swap-tune.web.app/](https://swap-tune.web.app/)
 
-**Features:**
+**Website Overview:** This is a resale website for musical instruments, where a seller can add a product for sale and a buyer can order their desired product using stripe and an admin can manage categories, all sellers and all buyers, etc.
 
+**Achievements:**
+- React Query is used to query data from APIs, caching, and revalidation, which provides a good user experience.
+- Private frontend routes and backend API routes are protected. JWT is used for authentication and role-based authorization allows users to perform tasks based on their roles. 
+- React hook form and Zod provides proper form control and validation on the front end.
+- Firebase handles Email/Password and Google Login.
+- React Context API handles the user state as a global state.
+- Mongoose Schema validation ensures that all documents are validated against the schema whenever they are created or updated in the database.
+- Stripe is used for payment.
+
+**Features:**
 - A user can register as a buyer or seller. Google login will be considered as a buyer.
 - A User can't book a product unless the user is logged In.
 - Only a buyer can place an order, seller or admin are not allowed.
@@ -12,21 +22,12 @@
 - Seller will see My products, Add product sections. Seller can add or delete any product. Seller can also toggle the advertised mode and the advertised product will display on the homepage.
 - Admin will see All sellers, All buyers, Add admins, Add category, and Reported items sections. Admin can add a new category and can delete or clear any reported Item. Admin can also convert any seller or buyer to an admin and can also delete them.
 
-**Achievements:**
-
-- React Query is used to query data from APIs, caching, and revalidation, which provides a good user experience.
-- Private frontend routes and backend API routes are protected. JWT is used for authentication and role-based authorization allows users to perform tasks based on their roles.
-- React hook form and Zod provides proper form control and validation on the front end.
-- Firebase handles Email/Password and Google Login.
-- React Context API handles the user state as a global state.
-- Mongoose Schema validation ensures that all documents are validated against the schema whenever they are created or updated in the database.
-- Stripe is used for payment.
-
 **Technologies Used:** Typescript, React, React Query, Tailwind CSS, Express, Mongoose, Firebase, JsonWebToken, Stripe, React-router, React-hook-form, Zod, Axios, React-hot-toast.
 
-**Admin Email:** admin@gmail.com
-**Admin Password:** 12345678
-**Seller Email:** seller@gmail.com
-**Seller Password:** 12345678
-
-**Server-side Github:** [https://github.com/abhiskg/swap-tune-backend](https://github.com/abhiskg/swap-tune-backend)
+```
+Admin Email: admin@gmail.com
+Admin Password: 12345678
+Seller Email: seller@gmail.com
+Seller Password: 12345678
+```
+> **Server-side Github:** [https://swap-tune.web.app/](https://swap-tune.web.app/)
