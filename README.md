@@ -2,11 +2,12 @@
 
 **Website Link:** [https://swap-tune.web.app/](https://swap-tune.web.app/)
 
-**Website Overview:** This is a resale website for musical instruments, where a seller can add a product for sale and a buyer can order their desired product using stripe and an admin can manage categories, all sellers and all buyers, etc.
+**Website Overview:** It is a resale website for musical instruments that allow sellers to add products for sale and buyers to order their favorite products using Stripe. An admin can manage categories, buyers, and sellers.
 
 **Achievements:**
+
 - React Query is used to query data from APIs, caching, and revalidation, which provides a good user experience.
-- Private frontend routes and backend API routes are protected. JWT is used for authentication and role-based authorization allows users to perform tasks based on their roles. 
+- Private frontend routes and backend API routes are protected. JWT is used for authentication and role-based authorization allows users to perform tasks based on their roles.
 - React hook form and Zod provides proper form control and validation on the front end.
 - Firebase handles Email/Password and Google Login.
 - React Context API handles the user state as a global state.
@@ -14,6 +15,7 @@
 - Stripe is used for payment.
 
 **Features:**
+
 - A user can register as a buyer or seller. Google login will be considered as a buyer.
 - A User can't book a product unless the user is logged In.
 - Only a buyer can place an order, seller or admin are not allowed.
@@ -30,4 +32,5 @@ Admin Password: 12345678
 Seller Email: seller@gmail.com
 Seller Password: 12345678
 ```
-> **Server-side Github:** [https://swap-tune.web.app/](https://swap-tune.web.app/)
+
+> **Server-side Github:** [https://github.com/abhiskg/swap-tune-backend](https://github.com/abhiskg/swap-tune-backend)

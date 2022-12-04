@@ -11,7 +11,7 @@ const AdvertisedProducts = () => {
 
   return (
     <>
-      <div className=" mb-10">
+      <div className="custom-width mx-auto mb-10">
         <h1 className="header-style">Advertised Product</h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
           {isLoading &&

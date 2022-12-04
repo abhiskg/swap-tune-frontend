@@ -7,10 +7,10 @@ import Projection from "./sections/Projection";
 const Home = () => {
   useDocTitle("Home");
   return (
-    <div className="custom-width mx-auto">
+    <div>
       <Hero />
-      <AdvertisedProducts />
       <Categories />
+      <AdvertisedProducts />
       <Projection />
     </div>
   );

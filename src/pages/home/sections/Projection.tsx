@@ -1,6 +1,6 @@
 const Projection = () => {
   return (
-    <section className="py-10 bg-white sm:py-16 lg:py-24">
+    <section className="py-10 custom-width mx-auto bg-white sm:py-16 lg:py-24">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="text-center">
           <h4 className="text-xl font-medium text-gray-900">

@@ -21,6 +21,7 @@
     "react-hook-form": "^7.39.5",
     "react-hot-toast": "^2.4.0",
     "react-router-dom": "^6.4.3",
+    "swiper": "^8.4.5",
     "zod": "^3.19.1"
   },
   "devDependencies": {
