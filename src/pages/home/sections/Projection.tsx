@@ -13,7 +13,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-fuchsia-600"
+                  className="flex-shrink-0 w-12 h-12 text-purple-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -40,7 +40,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-fuchsia-600"
+                  className="flex-shrink-0 w-12 h-12 text-purple-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -67,7 +67,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-fuchsia-600"
+                  className="flex-shrink-0 w-12 h-12 text-purple-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-fuchsia-600"
+                  className="flex-shrink-0 w-12 h-12 text-purple-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"

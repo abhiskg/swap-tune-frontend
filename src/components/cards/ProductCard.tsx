@@ -22,7 +22,7 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
           src={product.image}
           alt="blog"
         />
-        <span className="absolute top-0 text-sm font-medium right-0 bg-fuchsia-500 rounded p-1">
+        <span className="absolute top-0 text-sm font-medium right-0 bg-purple-500 rounded py-1 px-2 text-gray-200">
           {product.category}
         </span>
       </div>
@@ -37,7 +37,7 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
           </h3>
           <div
             onClick={() => handleReportItem(product._id)}
-            className=" text-sm text-gray-50 bg-red-400 p-1 hover:bg-red-500 cursor-pointer rounded"
+            className=" text-sm text-gray-50 bg-red-500 py-1 px-2 hover:bg-red-600 cursor-pointer rounded"
           >
             Report item
           </div>
@@ -94,7 +94,7 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
         ) : (
           <button
             onClick={() => toast.error("Login first")}
-            className="bg-fuchsia-600  w-full text-center py-1 rounded shadow mt-3"
+            className="bg-purple-500  w-full text-center py-2 rounded shadow mt-3 text-gray-100 font-medium hover:bg-purple-600"
           >
             Book Now
           </button>
