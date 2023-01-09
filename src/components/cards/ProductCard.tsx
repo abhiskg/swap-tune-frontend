@@ -22,7 +22,7 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
           src={product.image}
           alt="blog"
         />
-        <span className="absolute top-0 text-sm font-medium right-0 bg-purple-500 rounded py-1 px-2 text-gray-200">
+        <span className="absolute top-0 text-sm font-medium right-0 bg-violet-600 rounded py-1 px-2 text-gray-200">
           {product.category}
         </span>
       </div>
@@ -94,7 +94,7 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
         ) : (
           <button
             onClick={() => toast.error("Login first")}
-            className="bg-purple-500  w-full text-center py-2 rounded shadow mt-3 text-gray-100 font-medium hover:bg-purple-600"
+            className="bg-violet-600  w-full text-center py-2 rounded shadow mt-3 text-gray-100 font-medium hover:bg-violet-700"
           >
             Book Now
           </button>

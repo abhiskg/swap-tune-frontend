@@ -16,6 +16,9 @@ const Products = () => {
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
         {isLoading &&
           [...Array(3).keys()].map((num) => <ProductCardSkeleton key={num} />)}
+        {products && products.length < 1 && (
+          <div className="text-lg font-medium">No product Available</div>
+        )}
         {products &&
           products.map((product) => (
             <ProductCard key={product._id} product={product} />

@@ -5,8 +5,8 @@ import { useCategoryData } from "../../../hooks/useCategoryData";
 const Categories = () => {
   const { data: categories, isLoading } = useCategoryData();
   return (
-    <div className="custom-width mx-auto">
-      <h1 className="header-style">All Categories</h1>
+    <div className="custom-width mx-auto mt-20">
+      <h1 className="header-style">Top Categories</h1>
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-5">
         {isLoading &&
           [...Array(3).keys()].map((num) => <CategoryCardSkeleton key={num} />)}

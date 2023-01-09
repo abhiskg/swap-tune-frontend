@@ -76,7 +76,7 @@ const BookingModal = ({ product }: { product: ProductDataTypes }) => {
   return (
     <>
       <button
-        className="bg-fuchsia-500  w-full text-center py-1 rounded shadow mt-3"
+        className="bg-violet-600  w-full text-center py-2 rounded shadow mt-3 text-gray-100 font-medium hover:bg-violet-700"
         type="button"
         onClick={() => setShowModal(true)}
       >

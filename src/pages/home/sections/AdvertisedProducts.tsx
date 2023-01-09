@@ -11,8 +11,8 @@ const AdvertisedProducts = () => {
 
   return (
     <>
-      <div className="custom-width mx-auto mb-10">
-        <h1 className="header-style">Advertised Product</h1>
+      <div className="custom-width mx-auto  mt-20">
+        <h1 className="header-style">Popular Products</h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
           {isLoading &&
             [...Array(3).keys()].map((num) => (

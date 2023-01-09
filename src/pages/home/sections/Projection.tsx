@@ -1,9 +1,9 @@
 const Projection = () => {
   return (
-    <section className="py-10 custom-width mx-auto bg-white sm:py-16 lg:py-24">
+    <section className="py-10 custom-width mx-auto bg-white sm:py-16 ">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="text-center">
-          <h4 className="text-xl font-medium text-gray-900">
+          <h4 className="header-style">
             Numbers tell the hard works we've done in last 5 years
           </h4>
         </div>
@@ -13,7 +13,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-purple-600"
+                  className="flex-shrink-0 w-12 h-12 text-violet-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -40,7 +40,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-purple-600"
+                  className="flex-shrink-0 w-12 h-12 text-violet-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -67,7 +67,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-purple-600"
+                  className="flex-shrink-0 w-12 h-12 text-violet-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ const Projection = () => {
             <div className="px-4 py-6">
               <div className="flex items-start">
                 <svg
-                  className="flex-shrink-0 w-12 h-12 text-purple-600"
+                  className="flex-shrink-0 w-12 h-12 text-violet-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
