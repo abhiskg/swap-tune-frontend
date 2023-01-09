@@ -2,6 +2,15 @@
 
 **Website Link:** [https://swap-tune.web.app/](https://swap-tune.web.app/)
 
+**Credentials:**
+
+```
+Admin Email: admin@gmail.com
+Admin Password: 12345678
+Seller Email: seller@gmail.com
+Seller Password: 12345678
+```
+
 **Website Overview:** It is a resale website for musical instruments that allow sellers to add products for sale and buyers to order their favorite products using Stripe. An admin can manage categories, buyers, and sellers.
 
 **Achievements:**
@@ -25,12 +34,5 @@
 - Admin will see All sellers, All buyers, Add admins, Add category, and Reported items sections. Admin can add a new category and can delete or clear any reported Item. Admin can also convert any seller or buyer to an admin and can also delete them.
 
 **Technologies Used:** Typescript, React, React Query, Tailwind CSS, Express, Mongoose, Firebase, JsonWebToken, Stripe, React-router, React-hook-form, Zod, Axios, React-hot-toast.
-
-```
-Admin Email: admin@gmail.com
-Admin Password: 12345678
-Seller Email: seller@gmail.com
-Seller Password: 12345678
-```
 
 > **Server-side Github:** [https://github.com/abhiskg/swap-tune-backend](https://github.com/abhiskg/swap-tune-backend)
