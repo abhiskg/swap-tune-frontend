@@ -21,6 +21,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Payment from "../pages/dashboard/payment/Payment";
 import ErrorPage from "../pages/error/ErrorPage";
+import AllProducts from "../pages/allProducts/AllProducts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/all-products",
+        element: <AllProducts />,
       },
       {
         path: "/blog",

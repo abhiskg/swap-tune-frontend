@@ -60,6 +60,16 @@ const Header = () => {
           </li>
           <li className="hover:text-blue-900">
             <NavLink
+              to="/all-products"
+              className={({ isActive }) =>
+                isActive ? " text-white underline" : "text-gray-200"
+              }
+            >
+              All Products
+            </NavLink>
+          </li>
+          <li className="hover:text-blue-900">
+            <NavLink
               to="/blog"
               className={({ isActive }) =>
                 isActive ? " text-white underline" : "text-gray-200"
@@ -158,6 +168,9 @@ const Header = () => {
         <ul className="ml-10 mt-32 mb-10 flex flex-col gap-7 text-white">
           <li onClick={() => setMenu(false)}>
             <Link to="/home">Home</Link>
+          </li>
+          <li onClick={() => setMenu(false)}>
+            <Link to="/all-products">All Products</Link>
           </li>
           <li onClick={() => setMenu(false)}>
             <Link to="/blog">Blog</Link>

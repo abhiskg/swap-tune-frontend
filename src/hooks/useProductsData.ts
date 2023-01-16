@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { ProductDataTypes, ProductInputTypes } from "../types/ProductTypes";
 import { request } from "../utils/axios.utils";
 
+const fetchAllProducts: () => Promise<ProductDataTypes[]> = () => {
+  return request({ url: `/api/v1/products/all` });
+};
+
 const fetchMyProducts: (email: string) => Promise<ProductDataTypes[]> = (
   email: string
 ) => {
@@ -48,6 +52,9 @@ const deleteProduct = (id: string) => {
   return request({ url: `/api/v1/seller/product/${id}`, method: "delete" });
 };
 
+export const useProductsData = () => {
+  return useQuery(["products"], () => fetchAllProducts());
+};
 export const useMyProductsData = (email: string) => {
   return useQuery(["products", "user"], () => fetchMyProducts(email));
 };
