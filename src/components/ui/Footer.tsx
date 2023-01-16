@@ -48,6 +48,12 @@ const Footer = () => {
           >
             Home
           </Link>
+          <Link
+            to="/all-products"
+            className="title-font mb-3 text-sm font-medium tracking-widest text-gray-900"
+          >
+            All Products
+          </Link>
 
           <Link
             to="/blog"
