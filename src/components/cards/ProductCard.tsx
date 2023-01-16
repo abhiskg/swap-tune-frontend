@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useToggleProductReportedOption } from "../../hooks/useProductsData";
 import BookingModal from "../../modals/BookingModal";
@@ -9,11 +9,18 @@ import { ProductDataTypes } from "../../types/ProductTypes";
 const ProductCard = ({ product }: { product: ProductDataTypes }) => {
   const authContext = useContext(AuthContext);
   const { mutate } = useToggleProductReportedOption();
+  const navigate = useNavigate();
 
   const handleReportItem = (id: string) => {
     const data = { id, report: "report" };
     mutate(data);
   };
+
+  const handleUnauthorizedUser = () => {
+    navigate("/login");
+    toast.error("Login first");
+  };
+
   return (
     <div className="h-full overflow-hidden rounded-lg border-1 shadow border-gray-200 border-opacity-60">
       <div className="relative md:h-36 lg:h-48">
@@ -35,12 +42,14 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
           <h3 className=" font-medium text-gray-900 text-lg">
             {product.productName}
           </h3>
-          <div
-            onClick={() => handleReportItem(product._id)}
-            className=" text-sm text-gray-50 bg-red-500 py-1 px-2 hover:bg-red-600 cursor-pointer rounded"
-          >
-            Report item
-          </div>
+          {authContext?.user?.uid && (
+            <div
+              onClick={() => handleReportItem(product._id)}
+              className=" text-sm text-gray-50 bg-red-500 py-1 px-2 hover:bg-red-600 cursor-pointer rounded"
+            >
+              Report item
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-1  font-medium text-gray-600">
           Price:
@@ -93,7 +102,7 @@ const ProductCard = ({ product }: { product: ProductDataTypes }) => {
           <BookingModal product={product} />
         ) : (
           <button
-            onClick={() => toast.error("Login first")}
+            onClick={handleUnauthorizedUser}
             className="bg-violet-600  w-full text-center py-2 rounded shadow mt-3 text-gray-100 font-medium hover:bg-violet-700"
           >
             Book Now

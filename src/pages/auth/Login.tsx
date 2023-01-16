@@ -27,6 +27,7 @@ const Login = () => {
   useDocTitle("Login");
 
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const authContext = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -82,6 +83,49 @@ const Login = () => {
       });
   };
 
+  const handleDemoLogin = ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    setLoading2(true);
+    authContext
+      ?.signIn(email, password)
+      .then(({ user }) => {
+        axios
+          .post("https://swap-tune.vercel.app/api/v1/user/new", {
+            name: user.displayName,
+            email: user.email,
+          })
+          .then(({ data }) => {
+            if (data.success && data.token) {
+              localStorage.setItem("swap-tune", data.token);
+            }
+            setLoading2(false);
+            toast.success("Login Successful");
+            navigate(from, { replace: true });
+          })
+          .catch((err: any) => {
+            toast.error("Something went wrong, please try again later");
+            console.log(err.message);
+          });
+      })
+      .catch((err: any) => {
+        if (err.message == "Firebase: Error (auth/user-not-found).") {
+          setLoading2(false);
+          toast.error("User not found, please register first");
+        } else if (err.message == "Firebase: Error (auth/wrong-password).") {
+          setLoading2(false);
+          toast.error("Wrong email or password");
+        } else {
+          setLoading2(false);
+          toast.error("Something went wrong, try again later");
+        }
+      });
+  };
+
   return (
     <div>
       <div className="mx-auto my-10 w-full max-w-md rounded-md bg-white p-4 shadow dark:bg-gray-900 dark:text-gray-100 sm:p-8">
@@ -91,7 +135,7 @@ const Login = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="ng-untouched ng-pristine ng-valid space-y-8"
         >
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm">
                 Email address
@@ -141,7 +185,58 @@ const Login = () => {
             {loading ? <SpinLoader /> : "login"}
           </button>
         </form>
-        <div className="my-4 flex w-full items-center">
+
+        <div className="my-2 flex w-full items-center">
+          <hr className="w-full dark:text-gray-400" />
+          <p className="w-full px-3 text-center dark:text-gray-400">
+            Demo Login
+          </p>
+          <hr className="w-full dark:text-gray-400" />
+        </div>
+
+        <div className="flex gap-2 items-center">
+          <button
+            onClick={() =>
+              handleDemoLogin({
+                email: "recruiterb@gmail.com",
+                password: "12345678",
+              })
+            }
+            className={`auth-button grid place-items-center ${
+              loading2 && "cursor-not-allowed"
+            }`}
+          >
+            {loading2 ? <SpinLoader /> : "Buyer"}
+          </button>
+          <button
+            onClick={() =>
+              handleDemoLogin({
+                email: "seller@gmail.com",
+                password: "12345678",
+              })
+            }
+            className={`auth-button grid place-items-center ${
+              loading2 && "cursor-not-allowed"
+            }`}
+          >
+            {loading2 ? <SpinLoader /> : "Seller"}
+          </button>
+          <button
+            onClick={() =>
+              handleDemoLogin({
+                email: "admin@gmail.com",
+                password: "12345678",
+              })
+            }
+            className={`auth-button grid place-items-center ${
+              loading2 && "cursor-not-allowed"
+            }`}
+          >
+            {loading2 ? <SpinLoader /> : "Admin"}
+          </button>
+        </div>
+
+        <div className="my-2 flex w-full items-center">
           <hr className="w-full dark:text-gray-400" />
           <p className="w-full px-3 text-center dark:text-gray-400">
             or login with
@@ -149,11 +244,11 @@ const Login = () => {
           <hr className="w-full dark:text-gray-400" />
         </div>
 
-        <div className="my-6 flex gap-3">
+        <div className="my-3 flex gap-3">
           <GoogleLogin />
         </div>
 
-        <p className="text-center text-sm dark:text-gray-400">
+        <p className="text-center text-sm dark:text-gray-400 mt-2">
           Not a member?{" "}
           <Link
             to="/register"
