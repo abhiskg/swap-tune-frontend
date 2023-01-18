@@ -102,13 +102,21 @@ const CheckoutForm = ({ order }: { order: OrderDataTypes }) => {
   };
 
   return (
-    <div>
+    <div className="space-y-1">
+      <div className="font-medium text-gray-600">
+        Product Name: {order?.productName}
+      </div>
+      <div className="font-medium text-gray-600">
+        Amount: {order?.productPrice}
+      </div>
       <form onSubmit={handleSubmit}>
         <CardElement
+          className="w-96 shadow bg-gray-50 rounded p-5"
           options={{
             style: {
               base: {
                 fontSize: "16px",
+                lineHeight: "1.429",
                 color: "#424770",
                 "::placeholder": {
                   color: "#aab7c4",

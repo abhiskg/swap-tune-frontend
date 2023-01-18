@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
 import ProductCard from "../../components/cards/ProductCard";
-import PingLoader from "../../components/loaders/PingLoader";
 import ProductCardSkeleton from "../../components/skeletonLoader/ProductCardSkeleton";
 import useDocTitle from "../../hooks/useDocTitle";
 import { useProductsData } from "../../hooks/useProductsData";
 
 const AllProducts = () => {
-  useDocTitle("All");
+  useDocTitle("All Products");
 
   const { id } = useParams();
   const { data: products, isLoading } = useProductsData();

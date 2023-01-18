@@ -15,7 +15,7 @@ const AdvertisedProducts = () => {
         <h1 className="header-style">Popular Products</h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
           {isLoading &&
-            [...Array(3).keys()].map((num) => (
+            [...Array(6).keys()].map((num) => (
               <ProductCardSkeleton key={num} />
             ))}
           {products &&

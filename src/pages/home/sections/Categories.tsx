@@ -9,7 +9,7 @@ const Categories = () => {
       <h1 className="header-style">Top Categories</h1>
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-5">
         {isLoading &&
-          [...Array(3).keys()].map((num) => <CategoryCardSkeleton key={num} />)}
+          [...Array(6).keys()].map((num) => <CategoryCardSkeleton key={num} />)}
         {categories &&
           categories.map((category) => (
             <CategoryCard key={category._id} category={category} />
