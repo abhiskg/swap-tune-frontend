@@ -31,7 +31,7 @@ export const useCreateNewOrder = () => {
   const queryClient = useQueryClient();
   return useMutation(createNewOrder, {
     onSuccess: () => {
-      toast.success("Booking Successful");
+      toast.success("Booking Successful, Check Dashboard");
       queryClient.invalidateQueries(["my-orders"]);
     },
     onError(error) {
