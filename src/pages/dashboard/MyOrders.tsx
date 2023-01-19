@@ -75,7 +75,7 @@ const MyOrders = () => {
           </tbody>
         </table>
       ) : (
-        <div className="flex justify-center items-center h-screen -mt-16  text-center text-3xl font-semibold  sm:text-4xl">
+        <div className="flex justify-center items-center h-screen -mt-16  text-center text-2xl font-semibold  sm:text-4xl">
           No Order Available
         </div>
       )}

@@ -72,8 +72,8 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="grid place-items-center">
-      <h2>Add a New Product</h2>
+    <div className="grid place-items-center my-10">
+      <h2 className="font-semibold text-2xl mb-2">Add a New Product</h2>
       <form onSubmit={handleSubmit(handleAddProduct)} className="space-y-1">
         <div className="space-y-1">
           <label htmlFor="productName">Product Name</label>
