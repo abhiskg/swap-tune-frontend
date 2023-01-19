@@ -46,9 +46,37 @@ const AllAdmins = () => {
                   <td className="p-3">
                     <p>{admin.email}</p>
                   </td>
-                  {authContext?.user?.email !== admin.email && (
+                  {admin.email !== "admin@gmail.com" ? (
                     <td className="p-3 text-right">
                       <DeleteModal id={admin._id} mutateDelete={mutateDelete} />
+                    </td>
+                  ) : (
+                    <td className="p-3 text-right">
+                      <button
+                        className="mr-1 mb-1 rounded-full bg-red-500 p-2 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-pink-600"
+                        type="button"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="feather feather-slash"
+                        >
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line
+                            x1="4.93"
+                            y1="4.93"
+                            x2="19.07"
+                            y2="19.07"
+                          ></line>
+                        </svg>
+                      </button>
                     </td>
                   )}
                 </tr>

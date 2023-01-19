@@ -33,8 +33,9 @@ const AddCategory = () => {
     mutate(data);
     reset();
   };
+
   return (
-    <div className=" grid place-items-center ">
+    <div className=" grid place-items-center mt-10">
       <form onSubmit={handleSubmit(handleAddCategory)}>
         <div className="space-y-1">
           <label htmlFor="categoryName">Category Name</label>
