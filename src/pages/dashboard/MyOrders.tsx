@@ -7,7 +7,7 @@ import { useOrdersData } from "../../hooks/useOrdersData";
 
 const MyOrders = () => {
   useDocTitle("My-orders");
-  
+
   const authContext = useContext(AuthContext);
   const { isLoading, data: orders } = useOrdersData(
     authContext?.user?.email as string
@@ -18,7 +18,7 @@ const MyOrders = () => {
   }
   return (
     <div>
-      <div className="overflow-x-auto">
+      {orders && orders.length > 0 ? (
         <table className="min-w-full text-xs">
           <colgroup>
             <col />
@@ -74,7 +74,11 @@ const MyOrders = () => {
               ))}
           </tbody>
         </table>
-      </div>
+      ) : (
+        <div className="flex justify-center items-center h-screen -mt-16  text-center text-3xl font-semibold  sm:text-4xl">
+          No Order Available
+        </div>
+      )}
     </div>
   );
 };

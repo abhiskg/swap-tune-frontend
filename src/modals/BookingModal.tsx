@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ProductDataTypes } from "../types/ProductTypes";
 import toast from "react-hot-toast";
 import { useCreateNewOrder } from "../hooks/useOrdersData";
+import { useNavigate } from "react-router-dom";
 
 const orderInputSchema = z.object({
   // userName: z.string().optional(),
@@ -29,6 +30,7 @@ const BookingModal = ({ product }: { product: ProductDataTypes }) => {
   const [showModal, setShowModal] = useState(false);
   const authContext = useContext(AuthContext);
   const { mutate, isLoading, isSuccess } = useCreateNewOrder();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -71,6 +73,7 @@ const BookingModal = ({ product }: { product: ProductDataTypes }) => {
 
     reset();
     setShowModal(false);
+    navigate("/dashboard/my-orders");
   };
 
   return (

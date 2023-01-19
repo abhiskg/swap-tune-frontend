@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Header from "../components/ui/Header";
 import SideNavbar from "../components/ui/SideNavbar";
 
@@ -13,6 +13,7 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };
